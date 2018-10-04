@@ -1,0 +1,276 @@
+
+import java.lang.Math
+
+
+var boolean autoChangeInProgress = false
+
+//Number Lueftung_Aussenlufttemperatur "Aussenzuluft [%.1f °C]"       <temperature> (Lueftung) {comfoair="outdoor_incomming_temperatur"}
+//Number Lueftung_Fortlufttemperatur "Aussenabluft [%.1f °C]"         <temperature> (Lueftung) {comfoair="outdoor_outgoing_temperatur"}
+//Number Lueftung_Zulufttemperatur "Raumzuluft [%.1f °C]"             <temperature> (Lueftung) {comfoair="indoor_incomming_temperatur"}
+//Number Lueftung_Ablufttemperatur "Raumabluft [%.1f °C]"             <temperature> (Lueftung) {comfoair="indoor_outgoing_temperatur"}
+
+rule "Heat recovery efficiency"
+when
+	System started
+	or
+    Item Lueftung_Aussenlufttemperatur changed
+    or
+    Item Lueftung_Fortlufttemperatur changed
+    or
+    Item  Lueftung_Zulufttemperatur changed
+    or 
+    Item Lueftung_Ablufttemperatur changed
+	then 
+	  
+	  	var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
+	  	var Number TIsmetamoilauka = Lueftung_Fortlufttemperatur.state as DecimalType
+		var Number Tlauko = Lueftung_Aussenlufttemperatur.state as DecimalType
+		var Number effi = ( (TistrisNamo - TIsmetamoilauka) / (TistrisNamo - Tlauko) ) * 100
+	 	
+	postUpdate(Lueftung_eff,effi) + "%"
+	
+	
+end
+
+
+rule "Filter Status"
+when
+    System started
+    or
+    Item Lueftung_Filterlaufzeit changed
+then
+    if( Lueftung_Filterlaufzeit.state instanceof DecimalType ){
+
+        var Number laufzeit = Lueftung_Filterlaufzeit.state as DecimalType
+
+        var Number weeks = Math::floor( (laufzeit/168).doubleValue )
+        var Number days = Math::floor( ((laufzeit-(weeks*168))/24).doubleValue)
+
+        var String msg = ""
+
+        if( weeks > 0 ){
+
+            if( weeks == 1 ) msg = weeks.intValue + " Week"
+            else msg = weeks.intValue + " Weeks"
+        }
+
+        if( days > 0 ){
+
+            if( msg.length > 0 ) msg = msg + ", "
+
+            if( days == 1 ) msg = msg + days.intValue + " Day"
+            else msg = msg + days.intValue + " Days"
+        }
+
+        postUpdate(Lueftung_Filterlaufzeit_Message,msg)
+    }
+end
+
+rule "Status Meldung"
+when
+    System started
+    or
+    Item Lueftung_Fehlermeldung changed
+    or
+    Item Lueftung_FilterfehlerI changed
+    or
+    Item Lueftung_FilterfehlerE changed
+then
+    var String msg = ""
+
+    if( (Lueftung_FilterfehlerI.state instanceof DecimalType) && (Lueftung_FilterfehlerE.state instanceof DecimalType) && (Lueftung_Fehlermeldung.state instanceof StringType) ){
+
+        if( (Lueftung_FilterfehlerI.state as DecimalType) == 1 || (Lueftung_FilterfehlerE.state as DecimalType) == 1 ){
+            if( msg.length > 0 ) msg = msg + ", "
+            msg = msg + "Filter: "
+            if( (Lueftung_FilterfehlerI.state as DecimalType) == 1 ) msg = msg + "I"
+            if( (Lueftung_FilterfehlerI.state as DecimalType) == 1 && (Lueftung_FilterfehlerE.state as DecimalType) == 1) msg = msg + " & "
+            if( (Lueftung_FilterfehlerE.state as DecimalType) == 1 ) msg = msg + "E"
+        }
+        if( (Lueftung_Fehlermeldung.state as StringType) != "Ok" ){
+            if( msg.length > 0 ) msg = msg + ", "
+            msg = msg + "Error: " + (Lueftung_Fehlermeldung.state as StringType)
+        }
+    }
+
+    if( msg.length == 0 ){
+
+        msg = "Everything OK"
+    }
+
+    postUpdate(Lueftung_Status_Message,msg)
+end
+
+rule "Aussentemperatur Meldung"
+when
+    System started
+    or
+    Item Lueftung_Aussenlufttemperatur changed
+    or
+    Item Lueftung_Fortlufttemperatur changed
+then
+    if( (Lueftung_Aussenlufttemperatur.state instanceof DecimalType) && (Lueftung_Fortlufttemperatur.state instanceof DecimalType) ){
+
+        postUpdate(Lueftung_Aussentemperatur_Message,"→ " + Lueftung_Aussenlufttemperatur.state.format("%.1f") +"°C, ← " + Lueftung_Fortlufttemperatur.state.format("%.1f") + "°C")
+    }
+end
+
+rule "Innentemperatur Meldung"
+when
+    System started
+    or
+    Item Lueftung_Zulufttemperatur changed
+    or
+    Item Lueftung_Ablufttemperatur changed
+then
+    if( (Lueftung_Zulufttemperatur.state instanceof DecimalType) && (Lueftung_Ablufttemperatur.state instanceof DecimalType) ){
+
+        postUpdate(Lueftung_Innentemperatur_Message,"→ " + Lueftung_Zulufttemperatur.state.format("%.1f") +"°C, ← " + Lueftung_Ablufttemperatur.state.format("%.1f") + "°C")
+    }
+end
+
+rule "Ventilator Meldung"
+when
+    System started
+    or
+    Item Lueftung_Zuluft changed
+    or
+    Item Lueftung_Abluft changed
+then
+    if( (Lueftung_Zuluft.state instanceof DecimalType) && (Lueftung_Abluft.state instanceof DecimalType) ){
+
+        postUpdate(Lueftung_Ventilator_Message,"→ " + (Lueftung_Zuluft.state as DecimalType) +"%, ← " + (Lueftung_Abluft.state as DecimalType) + "%")
+    }
+end
+
+rule "Filter Fehler"
+when
+    Item Lueftung_Fehlermeldung changed
+then
+    if( (Lueftung_Fehlermeldung.state as StringType) != "Ok" ){
+
+        send("kompiuteriu@gmail.com", "Time to change Zhender Filters")
+    }
+end
+
+rule "Filter wechseln"
+when
+    Item Lueftung_FilterfehlerI changed
+    or
+    Item Lueftung_FilterfehlerE changed
+then
+    if( (Lueftung_FilterfehlerI.state as DecimalType) == 1 || (Lueftung_FilterfehlerE.state as DecimalType) == 1 ){
+
+        send("test@gmail.com", "Lüftungsfilter muss gewechselt werden")
+        }
+end
+
+rule "Manueller Eingriff"
+when
+    Item Lueftung_Fan_Level changed
+then
+
+    if( autoChangeInProgress ){
+
+        autoChangeInProgress = false
+    }
+    else{
+
+        postUpdate(Lueftung_Auto_Mode,0)
+        
+    }
+end
+
+rule "Lüfterstufe"
+when
+    System started
+    or
+    Item Lueftung_Auto_Mode changed
+    or
+    Item Lueftung_Bypass changed
+    or 
+    Item  Lueftung_Aussenlufttemperatur changed
+    or
+    Item Lueftung_Zulufttemperatur changed
+    or
+    Item Lauko_TP changed
+    or
+    Item Lueftung_Ablufttemperatur changed
+then
+    if( (Lueftung_Auto_Mode.state as DecimalType) == 1 ){
+    	
+  var Number LaukoT = Lueftung_Aussenlufttemperatur.state as DecimalType
+  var boolean isSummer = false
+  if( LaukoT > 17 ) isSummer = true
+                        
+   var Number currentLevel = (Lueftung_Fan_Level.state as DecimalType)
+   var Number newLevel = 3
+   
+   
+   if(!isSummer){
+     
+     newLevel = 1
+    //sendCommand(Lueftung_Fan_Level,1) { logInfo("Zhender.rules", "Winter") }	
+    var Number tloop =1
+	var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
+	var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
+	var Number corr = TistrisNamo - TpadavimoNamo
+	
+	 if 
+	   ( corr >= 6 && TistrisNamo <= 22.5)
+	    while (tloop>0)
+	   
+	    {
+    			     sendCommand(Lueftung_Fan_Level,4) { logInfo("efficiency.rule", "fix recovey 4") }
+                     Thread::sleep(75000)
+    			     sendCommand(Lueftung_Auto_Mode,1) { logInfo("efficiency.rule", "fix recovey 1") }
+                     tloop =tloop -1 
+    			     
+    			    }
+     if( LaukoT >=9 && TistrisNamo >=25.5 )
+        {      
+          sendCommand(Lueftung_Fan_Level,3) { logInfo("efficiency.rule", "overheat rule") }
+          sendCommand(Zhender_baypass, ON)  { logInfo("efficiency.rule", "Bypass ON overheat") }
+           }
+            else { 
+                sendCommand(Lueftung_Auto_Mode,1) 
+                sendCommand(Zhender_baypass, OFF)  { logInfo("efficiency.rule", "Bypass OFF overheat") }
+                }
+    }
+   else if (isSummer){
+ var Number LaukoTikra = Lauko_TP.state as DecimalType
+ var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
+ var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
+ 
+ 
+  if( TistrisNamo <=23.5 || LaukoTikra <=13.8 || TpadavimoNamo <=9 ){
+ 	
+ 	sendCommand(Zhender_baypass, OFF)  { logInfo("Zhender.rules", "Bypass OFF") }
+ 	sendCommand(Lueftung_Fan_Level,newLevel)	
+ }
+              
+else if (TistrisNamo >= 26 || LaukoTikra <= 12.8 && ( Lueftung_Bypass.state as DecimalType == 0) ){
+	
+	sendCommand(Zhender_baypass, ON)  { logInfo("Zhender.rules", "Bypass ON") }
+	sendCommand(Lueftung_Fan_Level,newLevel)
+	}
+   }
+   if( newLevel != currentLevel ){
+            if( newLevel == 1 ){
+                logInfo("airflow.rules", "auto slowdown start")
+                    
+            }
+            else if( currentLevel == 1 ){
+                    logInfo("airflow.rules", "auto slowdown end")
+                            }
+            autoChangeInProgress=true
+            sendCommand(Lueftung_Fan_Level,newLevel)
+        }
+}
+
+ end
+
+ 
+  
+  
+  

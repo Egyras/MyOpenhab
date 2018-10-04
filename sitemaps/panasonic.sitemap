@@ -1,0 +1,27 @@
+sitemap panasonic label="Panasonic" icon="House" {
+
+   
+   Frame {
+                Switch item=panasonic_c label="Cool Status"
+                Switch item=panasonic_h label="Heat Status"
+        }
+    
+    Frame {
+                Text item=panasonic_w label="Power W"
+                 Text item=panasonic_kwh_cool label="Cool Consumption"
+                 //Text item=panasonic_kwh_heat label="Power Kwh Heat"
+                 Text item=panasonic_cons_heat label="Heat Consumption"
+                            
+    }
+    
+    Frame {
+                Switch item=Zhender_baypass label="Zhender Bypass"
+                Text item=Lauko_TP label="Outside Temperature real"
+                Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
+                Text item=panasonic_hwater label="heat water status"
+                Text item=panasonic_cons_heat label="heat only kwh"
+            
+    }
+   
+}
+

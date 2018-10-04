@@ -1,0 +1,27 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    everyHour   : "0 0 * * * ?"
+    everyDay    : "0 0 0 * * ?"
+}
+
+Items {
+    Lueftung_Aussenlufttemperatur : strategy = everyChange, everyMinute
+    Lueftung_Fortlufttemperatur : strategy = everyChange, everyMinute
+    Lueftung_Zulufttemperatur : strategy = everyChange, everyMinute
+    Lueftung_Ablufttemperatur : strategy = everyChange, everyMinute
+    Lueftung_Bypass : strategy = everyChange, everyMinute
+    Lueftung_eff : strategy = everyChange, everyMinute
+    Lueftung_Zuluft : strategy = everyChange, everyMinute
+    Lueftung_Abluft : strategy = everyChange, everyMinute
+    CO2_level : strategy = everyChange, everyMinute
+    Zhender_kwh : strategy = everyChange, everyMinute
+    Zhender_w : strategy = everyChange, everyMinute
+    Lauko_TP : strategy = everyChange, everyMinute
+    panasonic_h : strategy = everyChange, everyMinute
+    panasonic_c : strategy = everyChange, everyMinute
+    panasonic_kwh_cool : strategy = everyChange, everyMinute
+    panasonic_kwh_heat : strategy = everyChange, everyMinute
+    panasonic_w : strategy = everyChange, everyMinute
+    panasonic_kwh_hwater : strategy = everyChange, everyMinute
+    panasonic_cons_heat : strategy = everyChange, everyMinute
+         }

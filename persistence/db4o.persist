@@ -1,0 +1,17 @@
+ Strategies {
+    everyMinute : "0 * * * * ?"
+    everyHour   : "0 0 * * * ?"
+    everyDay    : "0 0 0 * * ?"
+}
+
+Items {
+ Lueftung_Auto_Mode : strategy = everyChange, restoreOnStartup
+ Lueftung_Aussentemperatur_Message : strategy = everyChange, restoreOnStartup
+ Lueftung_Innentemperatur_Message : strategy = everyChange, restoreOnStartup
+ Lueftung_Ventilator_Message : strategy = everyChange, restoreOnStartup
+ Lueftung_Filterlaufzeit_Message : strategy = everyChange, restoreOnStartup
+ Lueftung_Status_Message : strategy = everyChange, restoreOnStartup
+ Lueftung_Fan_Level : strategy = everyChange, restoreOnStartup
+ Lueftung_eff : strategy = everyChange, restoreOnStartup
+  }
+ 
