@@ -84,6 +84,7 @@ when
 
 	//postUpdate(panasonic_cons_heat,diff) + "Kwh"
 	//postUpdate(panasonic_kwh_cool,cool) + "Kwh"
+  //
 
 	
 end
