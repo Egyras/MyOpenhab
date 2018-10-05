@@ -5,7 +5,7 @@ sitemap comfoair label="Comfoair" icon="House" {
             Switch item=Lueftung_Fan_Level label="Fan Level" mappings=[1="A", 2="1", 3="2", 4="3"]
         }
         Frame {
-            Setpoint item=Lueftung_Komfortemperatur step=0.5 minValue=12 maxValue=25
+            Setpoint item=Lueftung_Komfortemperatur step=0.5 minValue=12 maxValue=28
             Text item=Lueftung_Aussentemperatur_Message
             Text item=Lueftung_Innentemperatur_Message
             Text item=Lueftung_Ventilator_Message
