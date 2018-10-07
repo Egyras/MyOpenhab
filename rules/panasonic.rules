@@ -66,15 +66,16 @@ when
   or
      Item panasonic_kwh_hwater changed      
 	then 
-      
+      var Number kwheat = panasonic_cons_heat.state as DecimalType
 	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-	  	if( (panasonic_hwater.state as DecimalType) == 1){ 
+	  	if( (panasonic_hwater.state as DecimalType) == 1) { 
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
       }
-      var Number hotwater = panasonic_kwh_hwater.state as DecimalType
-      var Number kwheat = panasonic_kwh_heat.state as DecimalType
-      var Number diff = kwheat - hotwater
-      postUpdate(panasonic_cons_heat,diff) + "Kwh"
+            else { postUpdate(panasonic_cons_heat,kwheat) + "Kwh"
+      }
+      
+      //var Number diff = kwheat - hotwater
+      //postUpdate(panasonic_cons_heat,diff) + "Kwh"
 	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	//var Number cool = panasonic_kwh.historicState(parse("2018-09-25T03:00:00.0000")).state
 		 	//var Number diff = kwhHeat - cool
