@@ -26,7 +26,8 @@ when
   //if( hour >= 18 && (hour <= 20 && minute >=01) ) isnight = true 
 
   var MT = Lueftung_Ablufttemperatur.state as Number 
-  var LaukoT = Lauko_TP.state as Number 
+  var LaukoT = Lauko_TP.state as Number
+  var MT1h = Lueftung_Ablufttemperatur.minimumSince(now.minusHours(1)).state as Number
 
 
  if(isWinter && isnight){
@@ -34,11 +35,11 @@ when
          
        sendCommand(panasonic_h, OFF)  { logInfo("panasonic.rules", "Panasonic Night Heating OFF") }
         }
-        else if(isWinter && MT <= 21.5)
+        else if(isWinter && MT1h <= 22.5)
         {
                sendCommand(panasonic_h, ON)  { logInfo("panasonic.rules", "Panasonic Heating ON") }
         }
-           else if(isWinter && MT >= 22)
+           else if(isWinter && MT >= 23)
            {
            sendCommand(panasonic_h, OFF)  { logInfo("panasonic.rules", "Panasonic Heating OFF") }
       }
