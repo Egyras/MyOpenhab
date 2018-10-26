@@ -60,7 +60,8 @@ when
 	System started
 	or
      Item panasonic_kwh_heat changed
-   
+        or
+     Item panasonic_hwater changed
 	then 
       	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
 	  	if( (panasonic_hwater.state as DecimalType) == 1) { 
@@ -72,10 +73,10 @@ when
 	System started
 	or
      Item panasonic_kwh_heat changed
+       or
+     Item panasonic_kwh_hwater changed  
    
 	then 
-      	             
-      
      
 	  	var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
