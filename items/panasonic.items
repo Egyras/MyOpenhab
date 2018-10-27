@@ -8,3 +8,7 @@ Number panasonic_kwh_cooling             "kwh [%.1f KWH]"        (HeatPump)     
 Switch panasonic_c                     "Cool Status" (HeatPump) {mqtt=">[broker:/Panasonic/gpio/16:command:ON:1],>[broker:/Panasonic/gpio/16:command:OFF:0],<[broker:/Panasonic/relay/Switch:state:MAP(panasonic_cool.map)]"}
 Number panasonic_hwater                "Water Heat Status [%s]"  		(HeatPump)   {mqtt="<[broker:/Panasonic/hwater/hwater:state:default]"}
 Number panasonic_kwh_hwater             "kwh [%.1f KWH]"        (HeatPump)                {panasonic="Heat watrer consumption"}
+Number panasonic_kwh_heatdiff             "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat diff consumption"}
+Number panasonic_kwh_waterdiff             "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat water diff consumption"}
+Number panasonic_kwh_waterdiff1m            "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat water diff consumption 1min"}
+Number panasonic_cons_heatnew           "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat consumption new"}

@@ -10,7 +10,7 @@ sitemap panasonic label="Panasonic" icon="House" {
                 Text item=panasonic_w label="Power W"
                  Text item=panasonic_kwh_cool label="Cool Consumption"
                  //Text item=kwhHeat label="Power Kwh Heat"
-                 Text item=panasonic_cons_heat label="Heat Consumption"
+                 Text item=panasonic_kwh_heatdiff label="Heat Diff Consumption"
                             
     }
     
@@ -19,7 +19,7 @@ sitemap panasonic label="Panasonic" icon="House" {
                 Text item=Lauko_TP label="Outside Temperature real"
                 Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
                 Text item=panasonic_hwater label="heat water status"
-                Text item=panasonic_kwh_hwater label="heat water only kwh"
+                Text item=panasonic_kwh_waterdiff label="Heat water Diff Consumption"
             
     }
    
