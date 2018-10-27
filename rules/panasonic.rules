@@ -68,7 +68,7 @@ when
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
       }
 end
-rule "Calulate Kwh Heat comsumption"
+rule "Calulate Kwh Heat and water comsumption in seperate graphs"
 when
 	System started
 	or
@@ -78,15 +78,17 @@ when
    
 	then 
      
-	  	var Number kwhHeat = panasonic_kwh_heat.previousState().state
-	  	var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
-		 	var Number diff = kwhHeat - kwhwaterr
+	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
+	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
+      var Number kwhHeatdiff = panasonic_kwh_heat.deltaSince(now.withTimeAtStartOfDay())
+      var Number kwhwaterdiff = panasonic_kwh_hwater.deltaSince(now.withTimeAtStartOfDay())
+		 	var Number diff = kwhHeatdiff - kwhwaterdiff
       
 	 	//var Number diff = panasonic_kwh.minimumSince(now.minusHours(10)).state
      //var Number diff = panasonic_kwh.historicState(parse("2018-09-25T3:42:00.0000")).state
 
 	   postUpdate(panasonic_cons_heat,diff)
 	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
-  //
+  //heatting season 2018.10.25
 	
 end
