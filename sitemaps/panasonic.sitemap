@@ -19,7 +19,7 @@ sitemap panasonic label="Panasonic" icon="House" {
                 Text item=Lauko_TP label="Outside Temperature real"
                 Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
                 Text item=panasonic_hwater label="heat water status"
-                Text item=panasonic_cons_heat label="Heat water Diff Consumption"
+                
             
     }
    
