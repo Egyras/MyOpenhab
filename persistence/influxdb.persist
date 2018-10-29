@@ -23,8 +23,8 @@ Items {
     panasonic_kwh_heat : strategy = everyChange, everyMinute
     panasonic_w : strategy = everyChange, everyMinute
     panasonic_kwh_hwater : strategy = everyChange
-    panasonic_cons_heat : strategy = everyChange, everyMinute
     panasonic_hwater : strategy = everyChange, everyMinute
-    panasonic_kwh_waterdiff1m : strategy = everyChange, everyMinute
+    panasonic_kwh_watercons: strategy = everyChange
     panasonic_cons_heatnew : strategy = everyChange, everyMinute
-    }
+    panasonic_kwh_waterdiff1minute : strategy = everyChange
+     }

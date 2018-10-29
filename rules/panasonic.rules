@@ -64,9 +64,9 @@ when
      Item panasonic_hwater changed
 	then 
       	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-	  	if( (panasonic_hwater.state as DecimalType) == 1) { 
+            	if( (panasonic_hwater.state as DecimalType) == 1) { 
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
-      }
+            }
 end
 rule "Calulate Kwh Heat and water comsumption in seperate graphs"
 when
@@ -77,26 +77,31 @@ when
      Item panasonic_kwh_hwater changed  
    
 	then 
-     
+     //var Number kwhwaterdiff = panasonic_hwater.deltaSince(now.minusMinutes(1))
 	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
       var Number kwhHeatdiff = panasonic_kwh_heat.deltaSince(now.withTimeAtStartOfDay())
-      var Number kwhwaterdiff = panasonic_kwh_hwater.deltaSince(now.withTimeAtStartOfDay())
+      //var Number kwhwaterdiff = panasonic_kwh_waterdiff1m_kwh_hwater.deltaSince(now.toDateMidnight)
       //var Number kwhwaterdiffmin = panasonic_kwh_hwater.minimumSince(now.withTimeAtStartOfDay()).state
-      var Number kwhwaterdiff1min = panasonic_kwh_waterdiff1m.deltaSince(now.minusMinutes(1))
-      var Number kwhwaterdiffsum = panasonic_kwh_waterdiff1m.sumSince(now.withTimeAtStartOfDay())
-     
-		 	var Number diff = kwhHeatdiff - kwhwaterdiff
-      var Number diffnew = kwhHeatdiff - kwhwaterdiffsum
+      var Number kwhwatercalc = panasonic_kwh_waterdiff1minute.sumSince(now.withTimeAtStartOfDay())
+      //var Number kwhwatermin = panasonic_kwh_hwater.minimumSince(now.withTimeAtStartOfDay()).state
+      //var Number kwhwatermax = panasonic_kwh_hwater.maximumSince(now.withTimeAtStartOfDay()).state
+      //var Number test = panasonic_kwh_heat.deltaSince(now.withTimeAtStartOfDay())
+      //var Number kwhwaterdiffsum = panasonic_kwh_waterdiff1m.sumSince(now.withTimeAtStartOfDay())
+     //postUpdate(panasonic_kwh_waterdiff1m,kwhwaterdiff)
+		 	//var Number diff = kwhHeatdiff - kwhwaterdiff
+      //var Number kwhwatercalc = kwhwatermax - kwhwatermin
+      var Number diffnew = kwhHeatdiff - kwhwatercalc
       
 	 	//var Number diff = panasonic_kwh.minimumSince(now.minusHours(10)).state
      //var Number diff = panasonic_kwh.historicState(parse("2018-09-25T3:42:00.0000")).state
 
-	   postUpdate(panasonic_cons_heat,diff)
+	   //postUpdate(panasonic_cons_heat,diffdddd)
      postUpdate(panasonic_kwh_heatdiff,kwhHeatdiff)
-     postUpdate(panasonic_kwh_waterdiff,kwhwaterdiff)
-     postUpdate(panasonic_kwh_waterdiff1m,kwhwaterdiff1min)
+     postUpdate(panasonic_kwh_watercons,kwhwatercalc)
+     //postUpdate(panasonic_,kwhwatercalc)
      postUpdate(panasonic_cons_heatnew,diffnew)
+     
 
 	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
   //heatting season 2018.10.25
