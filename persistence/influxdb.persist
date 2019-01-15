@@ -27,4 +27,8 @@ Items {
     panasonic_kwh_watercons: strategy = everyChange
     panasonic_cons_heatnew : strategy = everyChange, everyMinute
     panasonic_kwh_waterdiff1minute : strategy = everyChange
+    panasonic_OUT_temp : strategy = everyChange, everyMinute
+    panasonic_IN_temp : strategy = everyChange, everyMinute
+    Real_air_temp : strategy = everyChange, everyMinute
+    Real_air_hum : strategy = everyChange, everyMinute
      }

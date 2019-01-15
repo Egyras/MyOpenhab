@@ -217,7 +217,7 @@ then
 	var Number corr = TistrisNamo - TpadavimoNamo
 	
 	 if 
-	   ( corr >= 6 && TistrisNamo <= 22.5)
+	   ( corr >= 4 && TistrisNamo <= 22.5)
 	    while (tloop>0)
 	   
 	    {

@@ -11,3 +11,5 @@ Number panasonic_kwh_heatdiff             "kwh [%.2f KWH]"        (HeatPump)    
 Number panasonic_kwh_watercons             "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat water diff consumption"}
 Number panasonic_kwh_waterdiff1minute            "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat water diff consumption 1min"}
 Number panasonic_cons_heatnew           "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat consumption new"}
+Number panasonic_OUT_temp			"OutsideTemp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:/TESTING/Out/Out:state:default]"}
+Number panasonic_IN_temp			"InsidedeTemp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:/TESTING/IN/IN:state:default]"}
