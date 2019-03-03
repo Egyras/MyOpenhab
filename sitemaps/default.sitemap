@@ -1,0 +1,57 @@
+sitemap default label="Main Menu" icon="House" {
+    Text item=Lueftung_Fan_Level label="Zehnder CA 350 status [MAP(comfoair_level.map):%d]" icon="fan" {
+        Frame {
+            Switch item=Lueftung_Auto_Mode label="Mode" mappings=[1="Auto", 0="Manual"]
+            Switch item=Lueftung_Fan_Level label="Fan Level" mappings=[1="A", 2="1", 3="2", 4="3"]
+       }
+        Frame {
+            Setpoint item=Lueftung_Komfortemperatur step=0.5 minValue=12 maxValue=28
+            Text item=Lueftung_Aussentemperatur_Message
+            Text item=Lueftung_Innentemperatur_Message
+            Text item=Lueftung_Ventilator_Message
+            Text item=Lueftung_eff
+            Text item=Lueftung_Bypass
+        }
+        Frame {
+            Text item=Lueftung_Filterlaufzeit_Message
+            Text item=Lueftung_Status_Message
+            
+        }
+   
+   Frame {
+                Text item=CO2_level label="Co2 Level"
+                Text item=Zhender_w label="Power"
+               
+        }
+        
+     
+     
+}
+Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
+
+Frame {
+                Switch item=panasonic_c label="Cool Status"
+                Switch item=panasonic_h label="Heat Status"
+        }
+    
+    Frame {
+                Text item=panasonic_w label="Power W"
+                 Text item=panasonic_kwh_cool label="Cool Consumption"
+                 //Text item=kwhHeat label="Power Kwh Heat"
+                 Text item=panasonic_kwh_heatdiff label="Heat Diff Consumption"
+                            
+    }
+    
+    Frame {
+                Switch item=Zhender_baypass label="Zhender Bypass"
+                Text item=Lauko_TP label="Outside Temperature real"
+                Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
+                Text item=panasonic_hwater label="heat water status"
+                Text item=Real_air_temp label="Air Temperature"
+                Text item=Real_air_hum label="Air Humidity"
+                
+            
+    }
+}
+
+}
