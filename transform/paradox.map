@@ -1,0 +1,2 @@
+ARM={"password":"1234", "Command":"arm", "Subcommand":"0"}
+DISARM={"password":"1234", "Command":"disarm", "Subcommand":"0"}

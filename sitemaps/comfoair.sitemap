@@ -1,4 +1,4 @@
-sitemap House label="Main Menu" icon="House" {
+sitemap comfoair label="Comfoair" icon="House" {
     Text item=Lueftung_Fan_Level label="Fan [MAP(comfoair_level.map):%d]" icon="selfAiring" {
         Frame {
             Switch item=Lueftung_Auto_Mode label="Mode" mappings=[1="Auto", 0="Manual"]

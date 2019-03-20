@@ -49,8 +49,18 @@ Frame {
                 Text item=panasonic_hwater label="heat water status"
                 Text item=Real_air_temp label="Air Temperature"
                 Text item=Real_air_hum label="Air Humidity"
-                
+                                
             
+    }
+}
+
+Text item=Status label="Paradox Security" icon="siren" {
+    
+    Frame {
+                Text item=Zone label="Zone Name" icon="lock"
+                Text item=Status label="Zone Status" icon="lock"
+                Switch item=Paradox_Control mappings=[ARM="Arm", DISARM="Disarm"] icon="lock"
+
     }
 }
 
