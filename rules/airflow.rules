@@ -199,9 +199,14 @@ when
 then
     if( (Lueftung_Auto_Mode.state as DecimalType) == 1 ){
     	
+
+  var Number tloop =1
+  var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
+  var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
+  var Number corr = TistrisNamo - TpadavimoNamo      
   var Number LaukoT = Lauko_TP.state as DecimalType
   var boolean isSummer = false
-  if( LaukoT > 19 ) isSummer = true
+  if( TistrisNamo > 23.5 ) isSummer = true
                         
    var Number currentLevel = Lueftung_Fan_Level.state as DecimalType
    var Number newLevel = 3
@@ -211,10 +216,7 @@ then
      
      newLevel = 1  { logInfo("Zhender.rules", "Winter mode") }
     //sendCommand(Lueftung_Fan_Level,1) { logInfo("Zhender.rules", "Winter") }	
-    var Number tloop =1
-	var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
-	var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
-	var Number corr = TistrisNamo - TpadavimoNamo
+    
 	
 	 if 
 	   ( corr >= 4 && TistrisNamo <= 22.5)
@@ -250,7 +252,7 @@ then
  	sendCommand(Lueftung_Fan_Level,newLevel)	
  }
               
-else if (TistrisNamo >= 26 || LaukoTikra <= 12.8 && ( Lueftung_Bypass.state as DecimalType == 0) ){
+else if (TistrisNamo >= 23.5 || LaukoTikra <= 12.8 && ( Lueftung_Bypass.state as DecimalType == 0) ){
 	
 	sendCommand(Zhender_baypass, ON)  { logInfo("Zhender.rules", "Bypass ON") }
 	sendCommand(Lueftung_Fan_Level,newLevel)
