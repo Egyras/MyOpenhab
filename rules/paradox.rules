@@ -1,1 +1,10 @@
-Paradox_Control
+rule "Paradox arm and disarm night"
+
+when
+
+	  System started
+
+	or
+
+      Item Paradox_Control changed
+
