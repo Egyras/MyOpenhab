@@ -1,2 +1,4 @@
-ARM={"password":"0891","Command":"arm","Subcommand":"0"}
-DISARM={"password":"0891","Command":"disarm","Subcommand":"0"}
+ARM={"password":"0891","Command":"arm","Subcommand":"1"}
+DISARM={"password":"0891","Command":"disarm","Subcommand":"1"}
+ARMN={"password":"0891","Command":"arm","Subcommand":"0"}
+DISARMN={"password":"0891","Command":"disarm","Subcommand":"0"}
