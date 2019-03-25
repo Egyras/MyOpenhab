@@ -1,10 +1,17 @@
-rule "Paradox arm and disarm night"
+rule "Paradox arm"
 
 when
+Item Paradox_Control changed to ARM
+then {
+paradox.sendCommand(transform("MAP", "paradox.map", "ARMN"))
+}
+end
 
-	  System started
+rule "Paradox disarm"
 
-	or
-
-      Item Paradox_Control changed
-
+when
+Item Paradox_Control changed to DISARM
+then {
+paradox.sendCommand(transform("MAP", "paradox.map", "DISARMN"))
+}
+end
