@@ -181,6 +181,48 @@ then
     }
 end
 
+rule "Winter fix"
+when
+    System started
+    or
+    Item Lueftung_Auto_Mode changed
+    or
+    Item Lueftung_Ablufttemperatur changed
+    or
+    Item Lauko_TP changed
+    or
+    Item Lueftung_Zulufttemperatur changed
+    then
+       if( (Lueftung_Auto_Mode.state as DecimalType) == 1 ){
+    
+    var Number tloop =1
+    var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
+    var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
+    var Number corr = TistrisNamo - TpadavimoNamo
+    var Number LaukoTikra = Lauko_TP.state as DecimalType
+    var boolean isSummer = false
+
+    if( LaukoTikra > 14 ) isSummer = true
+
+    if(!isSummer){
+	        if 
+	   ( corr >= 4 && TistrisNamo <= 22.5)
+	    while (tloop>0)
+	   
+	    {
+    			     sendCommand(Lueftung_Fan_Level,4) { logInfo("efficiency.rule", "fix recovey 4") }
+                     Thread::sleep(75000)
+    			     sendCommand(Lueftung_Auto_Mode,1) { logInfo("efficiency.rule", "fix recovey 1") }
+                     tloop =tloop -1 
+    			     
+              
+    			     
+    
+    }
+  } 
+}
+end
+
 rule "Lüfterstufe"
 when
     System started
@@ -200,59 +242,30 @@ then
     if( (Lueftung_Auto_Mode.state as DecimalType) == 1 ){
     	
 
-  var Number tloop =1
+  
   var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
   var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
-  var Number corr = TistrisNamo - TpadavimoNamo      
-  var Number LaukoT = Lauko_TP.state as DecimalType
+  var Number LaukoTikra = Lauko_TP.state as DecimalType
   var boolean isSummer = false
-  if( TistrisNamo > 23.5 ) isSummer = true
+  if( TistrisNamo > 22.5 ) isSummer = true
                         
    var Number currentLevel = Lueftung_Fan_Level.state as DecimalType
    var Number newLevel = 3
    
-   
-   if(!isSummer){
-     
-     newLevel = 1  { logInfo("Zhender.rules", "Winter mode") }
-    //sendCommand(Lueftung_Fan_Level,1) { logInfo("Zhender.rules", "Winter") }	
-    
-	
-	 if 
-	   ( corr >= 4 && TistrisNamo <= 22.5)
-	    while (tloop>0)
-	   
-	    {
-    			     sendCommand(Lueftung_Fan_Level,4) { logInfo("efficiency.rule", "fix recovey 4") }
-                     Thread::sleep(75000)
-    			     sendCommand(Lueftung_Auto_Mode,1) { logInfo("efficiency.rule", "fix recovey 1") }
-                     tloop =tloop -1 
-    			     
-    //overheat protection			    }
-   //  if( LaukoT >=9 && TistrisNamo >=25.5 ( Lueftung_Bypass.state as DecimalType == 0) ) {
-        
-         // sendCommand(Lueftung_Fan_Level,3)  logInfo("efficiency.rule", "overheat rule") 
-         // sendCommand(Zhender_baypass, ON)  logInfo("efficiency.rule", "Bypass ON overheat") }
-           
-           // else { 
-             //   sendCommand(Lueftung_Auto_Mode,1)
-             //   sendCommand(Zhender_baypass, OFF)  { logInfo("efficiency.rule", "Bypass OFF overheat") }
-             //   }
-    }
-   else if (isSummer){
+ if (isSummer){
  newLevel = 3  { logInfo("Zhender.rules", "Summer mode") }
- var Number LaukoTikra = Lauko_TP.state as DecimalType
+ //var Number LaukoTikra = Lauko_TP.state as DecimalType
  //var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
  //var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
  
  
-  if( TistrisNamo <=23.5 || LaukoTikra <=13.8 || TpadavimoNamo <=9 ){
+  if( TistrisNamo <=23.5 || TpadavimoNamo <=9 ){
  	
  	sendCommand(Zhender_baypass, OFF)  { logInfo("Zhender.rules", "Bypass OFF") }
  	sendCommand(Lueftung_Fan_Level,newLevel)	
  }
               
-else if (TistrisNamo >= 23.5 || LaukoTikra <= 12.8 && ( Lueftung_Bypass.state as DecimalType == 0) ){
+else if (TistrisNamo >= 23.5 && LaukoTikra <= 12.8 && (Lueftung_Bypass.state as DecimalType == 0) ){
 	
 	sendCommand(Zhender_baypass, ON)  { logInfo("Zhender.rules", "Bypass ON") }
 	sendCommand(Lueftung_Fan_Level,newLevel)
@@ -273,7 +286,7 @@ else if (TistrisNamo >= 23.5 || LaukoTikra <= 12.8 && ( Lueftung_Bypass.state as
         }
 }
 
-}
+
  end
 
  
