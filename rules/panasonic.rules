@@ -73,9 +73,13 @@ when
 	or
      Item panasonic_kwh_heat changed
        or
-     Item panasonic_kwh_hwater changed  
+     Item panasonic_kwh_hwater changed
+       or
+     Item Lueftung_Ablufttemperatur changed 
    
 	then 
+     var MTT = Lueftung_Ablufttemperatur.state as Number
+     if(MTT <= 23.5) {
      //var Number kwhwaterdiff = panasonic_hwater.deltaSince(now.minusMinutes(1))
 	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
@@ -104,5 +108,50 @@ when
 
 	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
   //heatting season 2018.10.25
+     }
 	
+end
+
+rule "Calulate Kwh Cool and water comsumption in seperate graphs"
+when
+	System started
+	or
+     Item panasonic_kwh_cool changed
+       or
+     Item panasonic_kwh_hwater changed
+       or
+     Item Lueftung_Ablufttemperatur changed 
+   
+	then 
+  var MTTT = Lueftung_Ablufttemperatur.state as Number
+if(MTTT > 23.5) {
+     //var Number kwhwaterdiff = panasonic_hwater.deltaSince(now.minusMinutes(1))
+	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
+	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
+      var Number kwhCooldiff = panasonic_kwh_cool.deltaSince(now.withTimeAtStartOfDay())
+      //var Number kwhwaterdiff = panasonic_kwh_waterdiff1m_kwh_hwater.deltaSince(now.toDateMidnight)
+      //var Number kwhwaterdiffmin = panasonic_kwh_hwater.minimumSince(now.withTimeAtStartOfDay()).state
+      var Number kwhwatercalcc = panasonic_kwh_waterdiff1minute.sumSince(now.withTimeAtStartOfDay())
+      //var Number kwhwatermin = panasonic_kwh_hwater.minimumSince(now.withTimeAtStartOfDay()).state
+      //var Number kwhwatermax = panasonic_kwh_hwater.maximumSince(now.withTimeAtStartOfDay()).state
+      //var Number test = panasonic_kwh_heat.deltaSince(now.withTimeAtStartOfDay())
+      //var Number kwhwaterdiffsum = panasonic_kwh_waterdiff1m.sumSince(now.withTimeAtStartOfDay())
+     //postUpdate(panasonic_kwh_waterdiff1m,kwhwaterdiff)
+		 	//var Number diff = kwhHeatdiff - kwhwaterdiff
+      //var Number kwhwatercalc = kwhwatermax - kwhwatermin
+      var Number diffneww = kwhCooldiff - kwhwatercalcc
+      
+	 	//var Number diff = panasonic_kwh.minimumSince(now.minusHours(10)).state
+     //var Number diff = panasonic_kwh.historicState(parse("2018-09-25T3:42:00.0000")).state
+
+	   //postUpdate(panasonic_cons_heat,diffdddd)
+     //postUpdate(panasonic_kwh_heatdiff,kwhHeatdiff)
+     postUpdate(panasonic_kwh_watercons,kwhwatercalcc)
+     //postUpdate(panasonic_,kwhwatercalc)
+     postUpdate(panasonic_cons_coolnew,diffneww)
+     
+
+	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
+  //heatting season 2018.10.25
+}
 end

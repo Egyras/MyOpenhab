@@ -259,13 +259,13 @@ then
  //var Number TpadavimoNamo = Lueftung_Zulufttemperatur.state as DecimalType
  
  
-  if( TistrisNamo <=23.5 || TpadavimoNamo <=9 ){
+  if( TistrisNamo <=23.5 || TpadavimoNamo <=11.5 || LaukoTikra >= 11.8 ){
  	
  	sendCommand(Zhender_baypass, OFF)  { logInfo("Zhender.rules", "Bypass OFF") }
  	sendCommand(Lueftung_Fan_Level,newLevel)	
  }
               
-else if (TistrisNamo >= 23.5 && LaukoTikra <= 12.8 && (Lueftung_Bypass.state as DecimalType == 0) ){
+else if (TistrisNamo >= 23.5 && LaukoTikra <= 12.1 && (Lueftung_Bypass.state as DecimalType == 0) ){
 	
 	sendCommand(Zhender_baypass, ON)  { logInfo("Zhender.rules", "Bypass ON") }
 	sendCommand(Lueftung_Fan_Level,newLevel)

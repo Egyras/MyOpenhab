@@ -4,6 +4,7 @@ sitemap panasonic label="Panasonic" icon="House" {
    Frame {
                 Switch item=panasonic_c label="Cool Status"
                 Switch item=panasonic_h label="Heat Status"
+                //Switch item=panasonic_season label="Season Status"
         }
     
     Frame {
