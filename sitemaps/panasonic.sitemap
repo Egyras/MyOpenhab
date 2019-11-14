@@ -21,10 +21,18 @@ sitemap panasonic label="Panasonic" icon="House" {
                 Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
                 Text item=panasonic_hwater label="heat water status"
                 Text item=Real_air_temp label="Air Temperature"
-                Text item=Real_air_hum label="Air Humidity"
-                
+                                
             
     }
    
+    Frame {
+            //Switch item=panasonic_heat_pump_Quiet_mode label="Set Quiet Mode" mappings=[0="Off", 1="Level1", 2="Level2", 3="Level3"]
+                Text item=panasonic_heat_pump_HeatShiftTemp label="Heat Shift Temperature"
+                Text item=panasonic_heat_pump_walve_state label="3-Way valve status"
+                Text item=panasonic_heat_pump_WatOutTarTemp label="Water Outlet Target Temperature"
+                Text item=panasonic_heat_pump_ActWatOutTemp label="Outlet Water Temperature"
+            
+            
+    }
 }
 

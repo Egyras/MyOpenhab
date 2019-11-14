@@ -29,11 +29,7 @@ sitemap default label="Main Menu" icon="House" {
 }
 Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
 
-Frame {
-                Switch item=panasonic_c label="Cool Status"
-                Switch item=panasonic_h label="Heat Status"
-        }
-    
+
     Frame {
                 Text item=panasonic_w label="Power W"
                  Text item=panasonic_kwh_cool label="Cool Consumption"
@@ -46,12 +42,32 @@ Frame {
                 Switch item=Zhender_baypass label="Zhender Bypass"
                 Text item=Lauko_TP label="Outside Temperature real"
                 Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
-                Text item=panasonic_hwater label="heat water status"
+                Text item=panasonic_hwater label="heat water status" 
                 Text item=Real_air_temp label="Air Temperature"
                 Text item=Real_air_hum label="Air Humidity"
                                 
             
     }
+    Frame {
+                Switch item=panasonic_heat_pump_Quiet_mode label="Set Quiet Mode" mappings=[0="OFF", 1="1", 2="2", 3="3"]
+                Setpoint item=panasonic_heat_pump_Shift_mode step=1 minValue=-5 maxValue=5
+                Text item=panasonic_heat_pump_HeatShiftTemp label="Heat Shift Temperature"
+                Text item=panasonic_heat_pump_walve_state label="3-Way valve status"
+                Text item=panasonic_heat_pump_WatOutTarTemp label="Water Outlet Target Temperature"
+                Text item=panasonic_heat_pump_ActWatOutTemp label="Outlet Water Temperature"
+                Text item=panasonic_heat_pump_HCurveOutHighTemp label="Curve Outlet H Water Temperature"
+                Text item=panasonic_heat_pump_HCurveOutLowTemp label="Curve Outlet L Water Temperature"
+                Text item=panasonic_heat_pump_HCurveOutsLowTemp label="Curve Outside L Temperature"
+                Text item=panasonic_heat_pump_HCurveOutsHighTemp label="Curve Outside H Temperature"
+                Text item=panasonic_heat_pump_TankSetTemp label="Tank Set Temperature"
+                Text item=panasonic_heat_pump_RoomTherTemp label="Room Thermostat Temperature"
+                Text item=panasonic_heat_pump_PumpFlow label="Pump Flow speed"
+                Text item=panasonic_heat_pump_CompFreq label="Heat Pump Frequency"
+
+            
+            
+    }
+
 }
 
 Text item=Status label="Paradox Security" icon="siren" {
