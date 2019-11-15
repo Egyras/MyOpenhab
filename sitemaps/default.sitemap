@@ -60,7 +60,9 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_heat_pump_HCurveOutsLowTemp label="Curve Outside L Temperature"
                 Text item=panasonic_heat_pump_HCurveOutsHighTemp label="Curve Outside H Temperature"
                 Text item=panasonic_heat_pump_TankSetTemp label="Tank Set Temperature"
+                Text item=panasonic_heat_pump_ActTankTemp label="Tank Actual Temperature"
                 Text item=panasonic_heat_pump_RoomTherTemp label="Room Thermostat Temperature"
+                Text item=panasonic_heat_pump_ActOutTemp label="Outside Air Temperature"
                 Text item=panasonic_heat_pump_PumpFlow label="Pump Flow speed"
                 Text item=panasonic_heat_pump_CompFreq label="Heat Pump Frequency"
 

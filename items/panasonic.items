@@ -29,9 +29,10 @@ Number  panasonic_heat_pump_ActOutTemp                   "Temp [%.0f °C]" 	<tem
 Number  panasonic_heat_pump_WatOutTarTemp                   "Temp [%.0f °C]" 	<temperature>	(HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/WatOutTarTemp:state:default]"}
 Number  panasonic_heat_pump_RoomTherTemp                   "Temp [%.0f °C]" 	<temperature>	(HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/RoomTherTemp:state:default]"}
 Number  panasonic_heat_pump_PumpFlow                   "Flow [%.2f L/min]" 		<pump> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/PumpFlow:state:default]"}
-String panasonic_heat_pump_Quiet_mode    "Mode"   (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetQuietMode:command:*:MAP(QuietMode.map)]"}
+String panasonic_heat_pump_Quiet_mode    "Mode"   <soundvolume> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetQuietMode:command:*:MAP(QuietMode.map)],<[broker:panasonic_heat_pump/sdc/quiet_mode_state:state:default] "}
 Number  panasonic_heat_pump_CompFreq                   "Frequency [%.0f Hz]" 		<flow> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/CompFreq:state:default]"}
-Number panasonic_heat_pump_Shift_mode    "Set Heat Shift  [%.0f °C]"   <temperature> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetShiftTemperature:command:*:${command}]"}
+Number panasonic_heat_pump_Shift_mode    "Set Heat Shift  [%.0f °C]"   <temperature> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetShiftTemperature:command:*:${command}],<[broker:panasonic_heat_pump/sdc/HeatShiftTemp:state:default]"}
+String  panasonic_heat_pump_Quiet_mode_status                   "quiet_mode_state_string [%s]"		<soundvolume> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/quiet_mode_state:state:default]"}
 
 
 
