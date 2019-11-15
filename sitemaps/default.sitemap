@@ -1,4 +1,4 @@
-sitemap default label="Main Menu" icon="House" {
+,sitemap default label="Main Menu" icon="House" {
     Text item=Lueftung_Fan_Level label="Zehnder CA 350 status [MAP(comfoair_level.map):%d]" icon="fan" {
         Frame {
             Switch item=Lueftung_Auto_Mode label="Mode" mappings=[1="Auto", 0="Manual"]
@@ -75,7 +75,7 @@ Text item=Status label="Paradox Security" icon="siren" {
     Frame {
                 Text item=Zone label="Zone Name" icon="lock"
                 Text item=Status label="Zone Status" icon="lock"
-                Switch item=Paradox_Control mappings=[ARM="Arm Night", DISARM="Disarm Night"] icon="lock"
+                Switch item=Paradox_Control mappings=[ARM="Arm", DISARM="Disarm", ARMN="Arm Night", DISARMN="Disarm Night" ] icon="lock"
 
     }
 }

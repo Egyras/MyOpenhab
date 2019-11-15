@@ -1,0 +1,17 @@
+rule "Paradox arm"
+
+when
+Item Paradox_Control changed to ARM
+then {
+paradox.sendCommand(transform("MAP", "paradox.map", "ARMN"))
+}
+end
+
+rule "Paradox disarm"
+
+when
+Item Paradox_Control changed to DISARM
+then {
+paradox.sendCommand(transform("MAP", "paradox.map", "DISARMN"))
+}
+end
