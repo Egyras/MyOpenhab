@@ -1,4 +1,4 @@
-,sitemap default label="Main Menu" icon="House" {
+sitemap default label="Main Menu" icon="House" {
     Text item=Lueftung_Fan_Level label="Zehnder CA 350 status [MAP(comfoair_level.map):%d]" icon="fan" {
         Frame {
             Switch item=Lueftung_Auto_Mode label="Mode" mappings=[1="Auto", 0="Manual"]
@@ -64,10 +64,10 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_heat_pump_PumpFlow label="Pump Flow speed"
                 Text item=panasonic_heat_pump_CompFreq label="Heat Pump Frequency"
 
+         
             
-            
+    
     }
-
 }
 
 Text item=Status label="Paradox Security" icon="siren" {
