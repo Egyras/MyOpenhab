@@ -51,8 +51,9 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
     Frame {
                 Switch item=panasonic_heat_pump_Quiet_mode label="Set Quiet Mode" mappings=[0="OFF", 1="1", 2="2", 3="3"]
                 Setpoint item=panasonic_heat_pump_Shift_mode step=1 minValue=-5 maxValue=5
+                Text item=panasonic_heat_pump_Mode_state label="Heat Pump Mode"
                 Text item=panasonic_heat_pump_HeatShiftTemp label="Heat Shift Temperature"
-                Text item=panasonic_heat_pump_walve_state label="3-Way valve status"
+                Text item=panasonic_heat_pump_walve_state label="3-Way Valve Status"
                 Text item=panasonic_heat_pump_WatOutTarTemp label="Water Outlet Target Temperature"
                 Text item=panasonic_heat_pump_ActWatOutTemp label="Outlet Water Temperature"
                 Text item=panasonic_heat_pump_HCurveOutHighTemp label="Curve Outlet H Water Temperature"
@@ -63,7 +64,7 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_heat_pump_ActTankTemp label="Tank Actual Temperature"
                 Text item=panasonic_heat_pump_RoomTherTemp label="Room Thermostat Temperature"
                 Text item=panasonic_heat_pump_ActOutTemp label="Outside Air Temperature"
-                Text item=panasonic_heat_pump_PumpFlow label="Pump Flow speed"
+                Text item=panasonic_heat_pump_PumpFlow label="Pump Flow Speed"
                 Text item=panasonic_heat_pump_CompFreq label="Heat Pump Frequency"
 
          
