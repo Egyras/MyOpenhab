@@ -33,7 +33,7 @@ String panasonic_heat_pump_Quiet_mode    "Mode"   <soundvolume> (HeatPump)  {mqt
 Number  panasonic_heat_pump_CompFreq                   "Frequency [%.0f Hz]" 		<flow> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/CompFreq:state:default]"}
 Number panasonic_heat_pump_Shift_mode    "Set Heat Shift  [%.0f °C]"   <temperature> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetShiftTemperature:command:*:${command}],<[broker:panasonic_heat_pump/sdc/HeatShiftTemp:state:default]"}
 //String  panasonic_heat_pump_Quiet_mode_status                   "quiet_mode_state_string [%s]"		<soundvolume> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/quiet_mode_state:state:default]"}
-String  panasonic_heat_pump_Mode_state                   "mode_state_state [%s]"		<settings> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/mode_state:state:default]"}
+String  panasonic_heat_pump_Mode                   "Mode"		<settings> (HeatPump)   {mqtt=">[broker:panasonic_heat_pump/SetMode:command:*:${command}],<[broker:panasonic_heat_pump/sdc/mode_state:state:default]"}
 Number  panasonic_heat_pump_InletTemp                   "Temp [%.0f °C]" 	<temperature> 	(HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/InletTemp:state:default]"}
 Number  panasonic_heat_pump_Floor_HeatDelta                   "Temp [%.0f °C]" 	<temperature> 	(HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/FloorHeatDelta:state:default]"}
 Number  panasonic_heat_pump_Floor_CoolDelta                   "Temp [%.0f °C]" 	<temperature> 	(HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/FloorCoolDelta:state:default]"}
