@@ -32,4 +32,12 @@ Items {
     panasonic_IN_temp : strategy = everyChange, everyMinute
     Real_air_temp : strategy = everyChange, everyMinute
     Real_air_hum : strategy = everyChange, everyMinute
+    panasonic_heat_pump_HeatShiftTemp : strategy = everyChange, everyMinute
+    panasonic_heat_pump_ActWatOutTemp : strategy = everyChange, everyMinute
+    panasonic_heat_pump_ActTankTemp : strategy = everyChange, everyMinute
+    panasonic_heat_pump_ActOutTemp : strategy = everyChange, everyMinute
+    panasonic_heat_pump_WatOutTarTemp : strategy = everyChange, everyMinute
+    panasonic_heat_pump_PumpFlow : strategy = everyChange, everyMinute
+    panasonic_heat_pump_CompFreq : strategy = everyChange, everyMinute
+    panasonic_heat_pump_InletTemp : strategy = everyChange, everyMinute
      }

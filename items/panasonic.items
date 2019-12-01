@@ -42,3 +42,5 @@ Number panasonic_heat_pump_Tank_HeatDelta                     "Temp [%.0f °C]" 
 String panasonic_heat_pump_ForceDHW      "Mode"   <energy> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetForceDHW:command:*:${command}],<[broker:panasonic_heat_pump/sdc/ForceDHW:state:default]"}
 String panasonic_heat_pump_Holiday      "Mode"   <energy> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetHoliday:command:*:${command}],<[broker:panasonic_heat_pump/sdc/Holiday:state:default]"}
 String panasonic_heat_pump_PowerMode     "Time [%s Min.]"   <energy> (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetPowerfull:command:*:${command}],<[broker:panasonic_heat_pump/sdc/powerfull_mode_state:state:default]"}
+Number panasonic_heat_pump_OperatingTime                 "Time [%.0f h]"  		<pump> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/OperatingTime:state:default]"}
+Number panasonic_heat_pump_OperationsNumber  "Operations [%.0f]"  		<pump> (HeatPump)   {mqtt="<[broker:panasonic_heat_pump/sdc/OperationsNumber:state:default]"}

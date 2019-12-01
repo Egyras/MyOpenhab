@@ -76,6 +76,8 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_heat_pump_RoomTherTemp label="Room Thermostat Temperature"
                 Text item=panasonic_heat_pump_ActOutTemp label="Outside Air Temperature"
                 Text item=panasonic_heat_pump_PumpFlow label="Pump Flow Speed"
+                Text item=panasonic_heat_pump_OperatingTime label="Operating Time"
+                Text item=panasonic_heat_pump_OperationsNumber label="Number Of Operations"
                 Text item=panasonic_heat_pump_CompFreq label="Heat Pump Frequency"
                 Text item=panasonic_heat_pump_Floor_HeatDelta label="Floor Heat Delta"
                 Text item=panasonic_heat_pump_Floor_CoolDelta label="Floor Cool Delta"
