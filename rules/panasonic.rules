@@ -79,7 +79,7 @@ when
    
 	then 
      var MTT = Lueftung_Ablufttemperatur.state as Number
-     if(MTT <= 23.5) {
+     if(MTT <= 26.5) {
      //var Number kwhwaterdiff = panasonic_hwater.deltaSince(now.minusMinutes(1))
 	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
@@ -154,4 +154,45 @@ if(MTTT > 23.5) {
 	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
   //heatting season 2018.10.25
 }
+end
+
+rule "Calulate Kwh Heat water comsumption"
+when
+	System started
+	or
+     Item panasonic_kwh_heat changed
+        or
+     Item panasonic_hwater changed
+	then 
+      	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
+            	if( (panasonic_hwater.state as DecimalType) == 1) { 
+      postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
+            }
+end
+
+rule "Heat Control"
+when
+	System started
+	or
+     Item panasonic_heat_pump_HeatShiftTemp changed
+       or
+     Item panasonic_heat_pump_RoomTherTemp changed
+       or
+     Item panasonic_heat_pump_PumpFlow changed
+       or  
+     Item Lueftung_Ablufttemperatur changed
+	then 
+     var RoomTemp = panasonic_heat_pump_RoomTherTemp.state as Number
+     var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
+     if(RoomTemp <= 25) {
+    
+          postUpdate(panasonic_heat_pump_Shift_mode,0)
+     
+     }
+     else if(RoomTemp >= 26 || TistrisNamo >= 22.5  ) {
+    
+          postUpdate(panasonic_heat_pump_Shift_mode,-5)
+     
+     }
+	
 end

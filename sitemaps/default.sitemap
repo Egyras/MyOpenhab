@@ -48,9 +48,8 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
     }
     Frame {
 
-               Switch item=panasonic_heat_pump_Mode label="Heat Pump Mode" mappings=[3="Cool+DHW", 2="Heat+DHW", 8="Auto+DHW"]
-               Switch item=panasonic_heat_pump_Mode label="Heat Pump Tank" mappings=[82="Tank OFF", 98="Tank ON"]
-               Switch item=panasonic_heat_pump_Mode label="Heat Mode Switch" mappings=[33="Heat OFF", 98="Heat ON"]
+               Switch item=panasonic_heat_pump_Mode label="Heat Pump Mode" mappings=[35="Cool+DHW", 34="Heat+DHW", 40="Auto+DHW"]
+               Switch item=panasonic_heat_pump_Mode label="Heat Pump Mode" mappings=[33="Tank Only", 18="Heat Only", 24="Auto Only", 19="Cool Only"]
                Switch item=panasonic_heat_pump_Quiet_mode label="Set Quiet Mode" mappings=[0="OFF", 1="1", 2="2", 3="3"]
                Switch item=panasonic_heat_pump_ForceDHW label="Set Force DHW" mappings=[0="OFF", 1="ON"]
                Switch item=panasonic_heat_pump_Holiday label="Set Holiday Mode" mappings=[84="OFF", 100="ON"]
