@@ -45,12 +45,13 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_hwater label="heat water status" 
                 Text item=Real_air_temp label="Air Temperature"
                 Text item=Real_air_hum label="Air Humidity"
+                Text item=Real_cop label="COP"
     }
     Frame {
 
                Switch item=panasonic_heat_pump_Mode label="Heat Pump Mode" mappings=[35="Cool+DHW", 34="Heat+DHW", 40="Auto+DHW"]
                Switch item=panasonic_heat_pump_Mode label="Heat Pump Mode" mappings=[33="Tank Only", 18="Heat Only", 24="Auto Only", 19="Cool Only"]
-               Switch item=panasonic_heat_pump_Quiet_mode label="Set Quiet Mode" mappings=[0="OFF", 1="1", 2="2", 3="3"]
+               Switch item=panasonic_heat_pump_Quiet_mode label="Set Quiet Mode" mappings=[0="OFF", 10="1", 20="2", 30="3"]
                Switch item=panasonic_heat_pump_ForceDHW label="Set Force DHW" mappings=[0="OFF", 1="ON"]
                Switch item=panasonic_heat_pump_Holiday label="Set Holiday Mode" mappings=[84="OFF", 100="ON"]
                Switch item=panasonic_heat_pump_PowerMode label="Set Power Mode" mappings=[0="OFF", 30="30", 60="60", 90="90"]
@@ -60,7 +61,7 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                                 
             
     Frame {
-                
+                Text item=panasonic_heat_pump_HeatPumpStatus label="Heat Pump Status"
                 Text item=panasonic_heat_pump_HeatShiftTemp label="Heat Shift Temperature"
                 Text item=panasonic_heat_pump_walve_state label="3-Way Valve Status"
                 Text item=panasonic_heat_pump_WatOutTarTemp label="Water Outlet Target Temperature"
@@ -81,7 +82,7 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_heat_pump_Floor_HeatDelta label="Floor Heat Delta"
                 Text item=panasonic_heat_pump_Floor_CoolDelta label="Floor Cool Delta"
                 Text item=panasonic_heat_pump_Tank_HeatDelta label="Tank Re-heat Delta"
-    
+                
     }
      
             

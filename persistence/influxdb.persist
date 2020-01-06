@@ -40,9 +40,13 @@ Items {
     panasonic_heat_pump_PumpFlow : strategy = everyChange, everyMinute
     panasonic_heat_pump_CompFreq : strategy = everyChange, everyMinute
     panasonic_heat_pump_InletTemp : strategy = everyChange, everyMinute
-    panasonic_heat_pump_OperatingT : strategy = everyChange, everyMinute
+    panasonic_heat_pump_OperatingTime : strategy = everyChange, everyMinute
     panasonic_heat_pump_OperationsNumber : strategy = everyChange, everyMinute
-    anasonic_heat_pump_Mode : strategy = everyChange, everyMinute
+    panasonic_heat_pump_Mode : strategy = everyChange, everyMinute
     panasonic_heat_pump_walve_state : strategy = everyChange, everyMinute
     panasonic_heat_pump_ActTankTemp : strategy = everyChange, everyMinute
+    panasonic_heat_pump_HeatPumpStatus : strategy = everyChange, everyMinute
+    panasonic_heat_pump_walve_state1 : strategy = everyChange, everyMinute
+    panasonic_heat_pump_RoomTherTemp : strategy = everyChange, everyMinute
+    Real_cop : strategy = everyChange, everyMinute
      }

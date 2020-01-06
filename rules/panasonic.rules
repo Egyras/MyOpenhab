@@ -1,60 +1,6 @@
 
 
-
-rule "Panasonic Heat control"
-when
-	  System started
-	or
-      Item Lueftung_Ablufttemperatur changed
-    or  
-      Item Lauko_TP changed
-    or
-      Item Lueftung_Aussenlufttemperatur changed
-    or 
-      Time cron "0 0/1 * * * ?"  
-	then
-	  //val currMonth = now.getMonthOfYear
-      var Number hour   = now.getHourOfDay
-     // var Number minute = now.getMinuteOfHour
-     var Number LaukoTemp = Lauko_TP.state as DecimalType
-      var boolean isnight = false
-      var boolean isWinter = false
-      if(LaukoTemp <=19) isWinter = true
-   
-
-    if(hour >= 18 || hour <= 01) isnight = true 
-  //if( hour >= 18 && (hour <= 20 && minute >=01) ) isnight = true 
-
-  var MT = Lueftung_Ablufttemperatur.state as Number 
-  var LaukoT = Lauko_TP.state as Number
-  var MT1h = Lueftung_Ablufttemperatur.minimumSince(now.minusMinutes(20)).state as Number
-
-
- if(isWinter && isnight){
-                 
-       sendCommand(panasonic_h, OFF)  { logInfo("panasonic.rules", "Panasonic Night Heating OFF") }
-        }
-        else if(isWinter && MT1h <= 22.5)
-        {
-               sendCommand(panasonic_h, ON)  { logInfo("panasonic.rules", "Panasonic Heating ON") }
-        }
-           else if(isWinter && MT >= 23)
-           {
-           sendCommand(panasonic_h, OFF)  { logInfo("panasonic.rules", "Panasonic Heating OFF") }
-      }
-      
-   else if( !isWinter && LaukoT>=19 && MT>=25.5){
-  	
-  	 sendCommand(panasonic_c, OFF)  { logInfo("panasonic.rules", "panasonic Cool ON") }
-  	 }
-  	 else if(MT<=25){
-  	 sendCommand(panasonic_c, ON)  { logInfo("panasonic.rules", "panasonic Cool OFF") }	
-  	 	  	 }
-  	
-   
-end
-
-rule "Calulate Kwh Heat water comsumption"
+rule "Calculate Kwh Heat water comsumption"
 when
 	System started
 	or
@@ -67,7 +13,7 @@ when
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
             }
 end
-rule "Calulate Kwh Heat and water comsumption in seperate graphs"
+rule "Calculate Kwh Heat and water comsumption in seperate graphs"
 when
 	System started
 	or
@@ -156,43 +102,67 @@ if(MTTT > 23.5) {
 }
 end
 
-rule "Calulate Kwh Heat water comsumption"
-when
-	System started
-	or
-     Item panasonic_kwh_heat changed
-        or
-     Item panasonic_hwater changed
-	then 
-      	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-            	if( (panasonic_hwater.state as DecimalType) == 1) { 
-      postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
-            }
-end
+//rule "Calulate Kwh Heat water comsumption"
+//when
+	//System started
+	//or
+    // Item panasonic_kwh_heat changed
+    //    or
+    // Item panasonic_hwater changed
+	//then 
+  //    	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
+  //          	if( (panasonic_hwater.state as DecimalType) == 1) { 
+  //    postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
+  //          }
+//end
 
 rule "Heat Control"
 when
 	System started
 	or
-     Item panasonic_heat_pump_HeatShiftTemp changed
-       or
+     
      Item panasonic_heat_pump_RoomTherTemp changed
-       or
-     Item panasonic_heat_pump_PumpFlow changed
-       or  
-     Item Lueftung_Ablufttemperatur changed
+        
 	then 
      var RoomTemp = panasonic_heat_pump_RoomTherTemp.state as Number
      var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
-     if(RoomTemp <= 25) {
+     //if(RoomTemp = 25) {
     
-          postUpdate(panasonic_heat_pump_Shift_mode,0)
+        //  sendCommand(panasonic_heat_pump_Shift_mode,0)
+     
+     //}
+     if(RoomTemp >= 27   ) {
+    
+          sendCommand(panasonic_heat_pump_Shift_mode,-5)
      
      }
-     else if(RoomTemp >= 26 || TistrisNamo >= 22.5  ) {
+	
+end
+
+rule "COP Calulation"
+when
+	System started
+	or
+     Item panasonic_heat_pump_PumpFlow changed
+     or
+     Item Real_outlet changed
+     or 
+     Item Real_inlet changed
+     or
+     Item panasonic_w changed
+        
+	then 
+     var Outlet = Real_outlet.state as Number
+     var Inlet = Real_inlet.state as Number
+     var Number flow = panasonic_heat_pump_PumpFlow.state as DecimalType
+     var power = panasonic_w.state as Number
     
-          postUpdate(panasonic_heat_pump_Shift_mode,-5)
+    
+    var Number deltaT = Outlet - Inlet
+    var Number heatProd = ((flow / 60) * 4181) * deltaT
+    var Number realCop = heatProd / power
+          postUpdate(Real_cop,realCop)
      
-     }
+     
 	
 end
