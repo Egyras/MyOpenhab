@@ -36,6 +36,7 @@ sitemap panasonic label="Panasonic" icon="House" {
                 Text item=panasonic_heat_pump_Floor_HeatDelta label="Floor Heat Delta"
                 Text item=panasonic_heat_pump_Floor_CoolDelta label="Floor Cool Delta"
                 Text item=panasonic_heat_pump_Tank_HeatDelta label="Tank Re-heat Delta"
+                Text item=panasonic_heat_pump_Error label="Error"
                 Text item=panasonic_heat_pump_controller label="Controller Status"
                 
     }  
