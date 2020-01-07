@@ -1,4 +1,5 @@
 sitemap panasonic label="Panasonic" icon="House" {
+  Text item=panasonic_heat_pump_HeatPumpStatus label="Panasonic Air-watwer Power" icon="heating" {
 
  Frame {
 
@@ -10,14 +11,14 @@ sitemap panasonic label="Panasonic" icon="House" {
                Switch item=panasonic_heat_pump_PowerMode label="Set Power Mode" mappings=[0="OFF", 1="30", 2="60", 3="90"]
                Setpoint item=panasonic_heat_pump_Shift_mode step=1 minValue=-5 maxValue=5
 
-    }            
+      }            
                                 
             
-  Frame {
-                Text item=panasonic_heat_pump_HeatPumpStatus label="Heat Pump Status" mappings=[0="OFF", 1="ON"]
+    Frame {
+                Switch item=panasonic_heat_pump_HeatPumpStatus label="Heat Pump Status" mappings=[0="OFF", 1="ON"]
                 Text item=panasonic_heat_pump_HeatShiftTemp label="Heat Shift Temperature"
-                Text item=panasonic_heat_pump_walve_state label="3-Way Valve Status" mappings=[0="Room", 1="DHW"]
-                Text item=panasonic_heat_pump_defrost_state label="Defrost Status" mappings=[0="OFF", 1="ON"]
+                Switch item=panasonic_heat_pump_walve_state label="3-Way Valve Status" mappings=[0="Room", 1="DHW"]
+                Switch item=panasonic_heat_pump_defrost_state label="Defrost Status" mappings=[0="OFF", 1="ON"]
                 Text item=panasonic_heat_pump_WatOutTarTemp label="Water Outlet Target Temperature"
                 Text item=panasonic_heat_pump_InletTemp label="Water Inlet Temperature"
                 Text item=panasonic_heat_pump_ActWatOutTemp label="Outlet Water Temperature"
@@ -39,7 +40,8 @@ sitemap panasonic label="Panasonic" icon="House" {
                 Text item=panasonic_heat_pump_Error label="Error"
                 Text item=panasonic_heat_pump_controller label="Controller Status"
                 
-    }  
-  
+    }
+     
+  }          
+     
 }
-
