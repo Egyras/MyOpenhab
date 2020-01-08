@@ -131,11 +131,11 @@ when
         //  sendCommand(panasonic_heat_pump_Shift_mode,0)
      
      //}
-     if(RoomTemp >= 27   ) {
+     //if(RoomTemp >= 27   ) {
     
-          sendCommand(panasonic_heat_pump_Shift_mode,-5)
+          //sendCommand(panasonic_heat_pump_Shift_mode,-5)
      
-     }
+    // }
 	
 end
 
