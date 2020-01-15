@@ -35,9 +35,12 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
                 Text item=panasonic_kwh_cool label="Cool Consumption"
                 //Text item=kwhHeat label="Power Kwh Heat"
                 Text item=panasonic_kwh_heatdiff label="Heat Diff Consumption"
+                
                             
           }
-    
+
+     
+           
     Frame {
                 Switch item=Zhender_baypass label="Zhender Bypass"
                 Text item=Lauko_TP label="Outside Temperature real"
@@ -103,5 +106,22 @@ Text item=Status label="Paradox Security" icon="siren" {
 
     }
 }
+
+Text item=Weather_CurTemp label="Current Forecast Temperature" icon="climate" {
+
+     Frame {
+
+              
+                Text item=Weather_CurTemp label="Current Forecast Temperature"
+                Text item=Weather_CurRain label="Current Precipitation"
+                Text item=Weather_CurCond label="Current Conditions"
+                Text item=Weather_CurWindSpeed label="Current Wind Speed"
+
+
+
+
+          }
+
+     }
 
 }
