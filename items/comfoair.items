@@ -12,6 +12,7 @@ Number Lueftung_Control     "Steuerung"                 <settings> (Lueftung) {c
 Number Lueftung_Fan_Level   "Stufe [%d]"                <selfAiring> (Lueftung) {comfoair="fan_level"}
 Number Lueftung_Komfortemperatur "Comfort Temperature [%.1f °C]"         <temperature> (Lueftung) {comfoair="target_temperatur"}
 Number Lueftung_Bypass      "Bypass [MAP(bypass_de.map):%s]"    <selfBypass> (Lueftung) {comfoair="bypass_mode"}
+Number ComfoairFilterReset		"Filter reset"					<service>	(Lueftung)			{comfoair="filter_reset"}
 
 Number Lueftung_Aussenlufttemperatur "Aussenzuluft [%.1f °C]"       <temperature> (Lueftung) {comfoair="outdoor_incomming_temperatur"}
 Number Lueftung_Fortlufttemperatur "Aussenabluft [%.1f °C]"         <temperature> (Lueftung) {comfoair="outdoor_outgoing_temperatur"}

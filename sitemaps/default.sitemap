@@ -15,6 +15,7 @@ sitemap default label="Main Menu" icon="House" {
         Frame {
             Text item=Lueftung_Filterlaufzeit_Message
             Text item=Lueftung_Status_Message
+            Switch item=ComfoairFilterReset label="Filter Reset" mappings=[1="Reset"]
             
         }
    
