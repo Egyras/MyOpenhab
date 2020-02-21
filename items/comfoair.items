@@ -30,5 +30,5 @@ Number  Zhender_kwh                     "kwh [%.1f KWH]"  		(Lueftung)   {mqtt="
 Number  Zhender_w                   "power [%.1f W]"  		(Lueftung)   {mqtt="<[broker:Zhender/pow:state:default]"}
 Switch Zhender_baypass "Baypass Status" (Lueftung) {mqtt=">[broker:/ZhenderBaypass/gpio/16:command:ON:1],>[broker:/ZhenderBaypass/gpio/16:command:OFF:0],<[broker:/ZhenderBaypass /Baypass/Switch:state:MAP(bypass_cheat.map)]"} 
 Number Lauko_TP			"OutsideTemp [%.1f °C]"		(Lueftung)   {mqtt="<[broker:/ZhenderBaypass/LaukoTP/LaukoTP:state:default]"}
-Number Real_air_temp			"temp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:AirOutside/Air/Temperature:state:default]"}
-Number Real_air_hum			"hum [%.2f %%]"		(HeatPump)   {mqtt="<[broker:AirOutside/Air/Humidity:state:default]"}
+Number Out_air_temp			"temp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:AirOutside/Air/Temperature:state:default]"}
+Number Out_air_hum			"hum [%.2f %%]"		(HeatPump)   {mqtt="<[broker:AirOutside/Air/Humidity:state:default]"}

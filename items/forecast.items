@@ -1,5 +1,5 @@
-Number Weather_CurTemp "Value: [%.1f °C]" <temperature> { http="<[https://api.meteo.lt/v1/places/vilnius/forecasts/long-term:6000:JSONPATH($.forecastTimestamps[0].airTemperature)]" }
-Number Weather_CurRain "Value: [%.0f mm]" <rain> { http="<[https://api.meteo.lt/v1/places/vilnius/forecasts/long-term:6000:JSONPATH($.forecastTimestamps[0].totalPrecipitation)]" }
-String Weather_CurCond "conditionCode [%s]"  <climate> { http="<[https://api.meteo.lt/v1/places/vilnius/forecasts/long-term:6000:JSONPATH($.forecastTimestamps[0].conditionCode)]" }
-Number Weather_CurWindSpeed "Value: [%.0f m/s]" <wind> { http="<[https://api.meteo.lt/v1/places/vilnius/forecasts/long-term:6000:JSONPATH($.forecastTimestamps[0].windSpeed)]" }
-//String Date "forecastTimeUtc [%s]"  <time> { http="<[https://api.meteo.lt/v1/places/vilnius/forecasts/long-term:6000:JSONPATH($.forecastTimestamps[0].forecastTimeUtc)]" }
+Number Weather_CurTemp "Value: [%.1f °C]" <temperature> { http="<[meteo:6000:JSONPATH($.forecastTimestamps[1].airTemperature)]" }
+Number Weather_CurRain "Value: [%.1f mm]" <rain> { http="<[meteo:6000:JSONPATH($.forecastTimestamps[1].totalPrecipitation)]" }
+String Weather_CurCond "conditionCode [%s]"  <climate> { http="<[meteo:6000:JSONPATH($.forecastTimestamps[1].conditionCode)]" }
+Number Weather_CurWindSpeed "Value: [%.0f m/s]" <wind> { http="<[meteo:6000:JSONPATH($.forecastTimestamps[1].windSpeed)]" }
+//String Date "forecastTimeUtc [%s]"  <time> { http="<[meteo:6000:JSONPATH($.forecastTimestamps[1].forecastTimeUtc)]" }

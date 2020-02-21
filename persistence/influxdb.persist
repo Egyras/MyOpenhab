@@ -30,8 +30,8 @@ Items {
     panasonic_kwh_waterdiff1minute : strategy = everyChange
     panasonic_OUT_temp : strategy = everyChange, everyMinute
     panasonic_IN_temp : strategy = everyChange, everyMinute
-    Real_air_temp : strategy = everyChange, everyMinute
-    Real_air_hum : strategy = everyChange, everyMinute
+    Out_air_temp : strategy = everyChange, everyMinute
+    Out_air_hum : strategy = everyChange, everyMinute
     panasonic_heat_pump_HeatShiftTemp : strategy = everyChange, everyMinute
     panasonic_heat_pump_ActWatOutTemp : strategy = everyChange, everyMinute
     panasonic_heat_pump_ActTankTemp : strategy = everyChange, everyMinute
@@ -49,4 +49,6 @@ Items {
     panasonic_heat_pump_Mode : strategy = everyChange, everyMinute
     panasonic_heat_pump_defrost_state : strategy = everyChange, everyMinute
     Real_cop : strategy = everyChange, everyMinute
+    Real_outlet : strategy = everyChange
+    Real_inlet : strategy = everyChange
      }
