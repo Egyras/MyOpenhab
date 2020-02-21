@@ -24,8 +24,8 @@ when
      Item Lueftung_Ablufttemperatur changed 
    
 	then 
-     var MTT = Lueftung_Ablufttemperatur.state as Number
-     if(MTT <= 26.5) {
+     //var MTT = Lueftung_Ablufttemperatur.state as Number
+     //if(MTT <= 26.5) {
      //var Number kwhwaterdiff = panasonic_hwater.deltaSince(now.minusMinutes(1))
 	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
@@ -54,7 +54,7 @@ when
 
 	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
   //heatting season 2018.10.25
-     }
+     //}
 	
 end
 
@@ -69,8 +69,8 @@ when
      Item Lueftung_Ablufttemperatur changed 
    
 	then 
-  var MTTT = Lueftung_Ablufttemperatur.state as Number
-if(MTTT > 23.5) {
+  //var MTTT = Lueftung_Ablufttemperatur.state as Number
+//if(MTTT > 23.5) {
      //var Number kwhwaterdiff = panasonic_hwater.deltaSince(now.minusMinutes(1))
 	  	//var Number kwhHeat = panasonic_kwh_heat.previousState().state
 	  	//var Number kwhwaterr = panasonic_kwh_hwater.previousState().state
@@ -99,7 +99,7 @@ if(MTTT > 23.5) {
 
 	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
   //heatting season 2018.10.25
-}
+//}
 end
 
 //rule "Calulate Kwh Heat water comsumption"

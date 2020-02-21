@@ -1,19 +1,19 @@
 
 Switch panasonic_h "Heat Status" (HeatPump) {mqtt=">[broker:/Panasonic/gpio/16:command:ON:1],>[broker:/Panasonic/gpio/16:command:OFF:0],<[broker:/Panasonic/relay/Switch:state:MAP(panasonic.map)]"}
-Number  panasonic_kwh_cool                     "kwh [%.1f KWH]"  		(HeatPump)   {mqtt="<[broker:panasonic/tot_act_en:state:default]"}
-Number  panasonic_w                   "power [%.1f W]"  		(HeatPump)   {mqtt="<[broker:panasonic/pow:state:default]"}
-Number  panasonic_kwh_heat                     "kwh [%.1f KWH]"  		(HeatPump)   {mqtt="<[broker:panasonic/tot_act_en:state:default]"}
-Number panasonic_kwh_cooling             "kwh [%.1f KWH]"        (HeatPump)                {panasonic="cool consumption"}
+Number panasonic_kwh_cool                     "Kwh [%.1f Kwh]"  		(HeatPump)   {mqtt="<[broker:panasonic/tot_act_en:state:default]"}
+Number panasonic_w                   "power [%.1f W]"  		(HeatPump)   {mqtt="<[broker:panasonic/pow:state:default]"}
+Number panasonic_kwh_heat                     "Kwh [%.1f Kwh]"  		(HeatPump)   {mqtt="<[broker:panasonic/tot_act_en:state:default]"}
+Number panasonic_kwh_cooling             "Kwh [%.1f Kwh]"        (HeatPump)                {panasonic="cool consumption"}
 Switch panasonic_c                     "Cool Status" (HeatPump) {mqtt=">[broker:/Panasonic/gpio/16:command:ON:1],>[broker:/Panasonic/gpio/16:command:OFF:0],<[broker:/Panasonic/relay/Switch:state:MAP(panasonic_cool.map)]"}
-Number panasonic_hwater                "Water Heat Status [%s]"  		(HeatPump)   {mqtt="<[broker:/Panasonic/hwater/hwater:state:default]"}
-Number panasonic_kwh_hwater             "kwh [%.1f KWH]"        (HeatPump)                {panasonic="Heat watrer consumption"}
-Number panasonic_kwh_heatdiff             "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat diff consumption"}
-Number panasonic_kwh_watercons             "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat water diff consumption"}
-Number panasonic_kwh_waterdiff1minute            "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat water diff consumption 1min"}
-Number panasonic_cons_heatnew           "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Heat consumption new"}
+Number panasonic_hwater                "Mode"  		(HeatPump)   {mqtt="<[broker:/Panasonic/hwater/hwater:state:default]"}
+Number panasonic_kwh_hwater             "Kwh [%.1f Kwh]"        (HeatPump)                {panasonic="Heat watrer consumption"}
+Number panasonic_kwh_heatdiff             "Kwh [%.2f Kwh]"        (HeatPump)                {panasonic="Heat diff consumption"}
+Number panasonic_kwh_watercons             "Kwh [%.2f Kwh]"        (HeatPump)                {panasonic="Heat water diff consumption"}
+Number panasonic_kwh_waterdiff1minute            "Kwh [%.2f Kwh]"        (HeatPump)                {panasonic="Heat water diff consumption 1min"}
+Number panasonic_cons_heatnew           "Kwh [%.2f Kwh]"        (HeatPump)                {panasonic="Heat consumption new"}
 //Number panasonic_OUT_temp			"OutsideTemp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:/Panasonic/Temperature:state:default]"}
 //Number panasonic_IN_temp			"InsidedeTemp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:/TESTING/IN/IN:state:default]"}
-Number panasonic_cons_coolnew           "kwh [%.2f KWH]"        (HeatPump)                {panasonic="Cool consumption new"}
+Number panasonic_cons_coolnew           "Kwh [%.2f Kwh]"        (HeatPump)                {panasonic="Cool consumption new"}
 //Switch panasonic_season                   "season Status" (HeatPump)
 Number Real_outlet			                             "Temp [%.2f °C]"		               (HeatPump)  {mqtt="<[broker:Cop/outlet/Temperature:state:default]"}
 Number Real_inlet		                                 "Temp [%.2f °C]"		               (HeatPump)  {mqtt="<[broker:Cop/inlet/Temperature:state:default]"}

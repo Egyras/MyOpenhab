@@ -26,9 +26,9 @@ String Lueftung_Fehlermeldung   "Fehlercode [%s]"               <selfError> (Lue
 Number Lueftung_eff				"Efficiency [%.1f %%]"			<selfAiring> (Lueftung) {comfoair="Efficiency"}
 Number CO2_level				    "CO2 [%.1f ppm]"		(Lueftung)   {mqtt="<[broker:ESP-energy-01/watt:state:default]"}
 //Number Lueftung_Filterreset     "Filterlaufzeit reset"  <timer>      (Lueftung)      {comfoair="filter_reset"}
-Number  Zhender_kwh                     "kwh [%.1f KWH]"  		(Lueftung)   {mqtt="<[broker:Zhender/tot_act_en:state:default]"}
+Number  Zhender_Kwh                     "Kwh [%.1f Kwh]"  		(Lueftung)   {mqtt="<[broker:Zhender/tot_act_en:state:default]"}
 Number  Zhender_w                   "power [%.1f W]"  		(Lueftung)   {mqtt="<[broker:Zhender/pow:state:default]"}
 Switch Zhender_baypass "Baypass Status" (Lueftung) {mqtt=">[broker:/ZhenderBaypass/gpio/16:command:ON:1],>[broker:/ZhenderBaypass/gpio/16:command:OFF:0],<[broker:/ZhenderBaypass /Baypass/Switch:state:MAP(bypass_cheat.map)]"} 
 Number Lauko_TP			"OutsideTemp [%.1f °C]"		(Lueftung)   {mqtt="<[broker:/ZhenderBaypass/LaukoTP/LaukoTP:state:default]"}
-Number Out_air_temp			"temp [%.2f °C]"		(HeatPump)   {mqtt="<[broker:AirOutside/Air/Temperature:state:default]"}
-Number Out_air_hum			"hum [%.2f %%]"		(HeatPump)   {mqtt="<[broker:AirOutside/Air/Humidity:state:default]"}
+Number Out_air_temp			"temp [%.2f °C]"	<temperature>	(Lueftung)   {mqtt="<[broker:AirOutside/Air/Temperature:state:default]"}
+Number Out_air_hum			"hum [%.2f %%]"	<smoke>	(Lueftung)   {mqtt="<[broker:AirOutside/Air/Humidity:state:default]"}

@@ -19,9 +19,11 @@ sitemap default label="Main Menu" icon="House" {
         }
    
    Frame {
+                Switch item=Zhender_baypass label="Zhender Bypass"
+                Text item=Lauko_TP label="Outside Temperature real"
                 Text item=CO2_level label="Co2 Level"
-                Text item=Zhender_w label="Power"
-               
+                Text item=Zhender_w label="Power W"
+                              
         }
         
      
@@ -32,9 +34,9 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
 
     Frame {
                 Text item=panasonic_w label="Power W"
-                Text item=panasonic_kwh_cool label="Cool Consumption"
+                //Text item=panasonic_kwh_cool label="Cool Consumption"
                 //Text item=kwhHeat label="Power Kwh Heat"
-                Text item=panasonic_kwh_heatdiff label="Heat Diff Consumption"
+                Text item=panasonic_kwh_heatdiff label="Current Consumption (24H)"
                 
                             
           }
@@ -42,14 +44,14 @@ Text item=panasonic_w label="Panasonic Air-watwer Power" icon="heating" {
      
            
     Frame {
-                Switch item=Zhender_baypass label="Zhender Bypass"
-                Text item=Lauko_TP label="Outside Temperature real"
+                
                 Text item=Lueftung_Ablufttemperatur label="Indoor Temperature"
-                Text item=panasonic_hwater label="heat water status" 
+                Switch item=panasonic_hwater label="Hot Water Status" mappings=[0="OFF", 1="ON"]
                 Text item=Out_air_temp label="Air Temperature"
                 Text item=Out_air_hum label="Air Humidity"
-                Text item=Real_cop label="COP"
-    }
+                Text item=Real_cop label="Instant COP"
+        }
+
    
    Frame {
 
