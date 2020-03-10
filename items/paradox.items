@@ -1,3 +1,4 @@
 String Zone			"Zone [%s]"		(Paradox)   {mqtt="<[broker:paradoxdCTL/out:state:JSONPATH($.data)]"}
 String Status			"Status [%s]"		(Paradox)   {mqtt="<[broker:paradoxdCTL/out:state:JSONPATH($.eventD)]"}
 String Paradox_Control   "Control"     {mqtt=">[broker:paradoxdCTL/in:command:*:MAP(paradox.map)],<[broker:paradoxdCTL/status:state:JSONPATH($.status)]"}
+//Number Labas              "Status"    {http="<[https://mano.labas.lt/api/login{Authorization=Basic KzM3MDYzODQyODc0OnpvbWJpczIwMDk=}:60000:REGEX(.*?<title>(.*?)</title>(.*))]"}

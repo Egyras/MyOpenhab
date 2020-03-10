@@ -106,6 +106,7 @@ Text item=Status label="Paradox Security" icon="siren" {
                 Text item=Zone label="Zone Name" icon="lock"
                 Text item=Status label="Zone Status" icon="lock"
                 Switch item=Paradox_Control mappings=[ARM="Arm", DISARM="Disarm", ARMN="Arm Night", DISARMN="Disarm Night" ] icon="lock"
+               // Text item=Labas label="testing"
 
     }
 }
