@@ -120,6 +120,7 @@ Text item=Weather_CurTemp label="Current Forecast Temperature" icon="climate" {
                 Text item=Weather_CurRain label="Current Precipitation"
                 Text item=Weather_CurCond label="Current Conditions"
                 Text item=Weather_CurWindSpeed label="Current Wind Speed"
+                //Text item=Huawei_Signal label="test"
 
 
 
