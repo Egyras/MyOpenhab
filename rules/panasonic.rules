@@ -139,7 +139,7 @@ when
 	
 end
 
-rule "COP Calulation"
+ rule "COP Calulation"
 when
 	System started
 	or
@@ -158,10 +158,10 @@ when
      var power = panasonic_w.state as Number
     
     
-    var Number deltaT = Outlet - Inlet
-    var Number heatProd = ((flow / 60) * 4181) * deltaT
-    var Number realCop = heatProd / power
-          postUpdate(Real_cop,realCop)
+     var Number deltaT = Outlet - Inlet
+     var Number heatProd = ((flow / 60) * 4181) * deltaT
+     var Number realCop = heatProd / power
+        postUpdate(Real_cop,realCop)
      
      
 	

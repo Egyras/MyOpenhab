@@ -24,8 +24,7 @@ sitemap default label="Main Menu" icon="House" {
                 Text item=Lauko_TP label="Outside Temperature real"
                 Text item=CO2_level label="Co2 Level"
                 Text item=Zhender_w label="Power W"
-                //
-                              
+                                              
         }
         
      
