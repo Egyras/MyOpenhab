@@ -1,0 +1,2 @@
+armed_away={"password":"0891","Command":"arm","Subcommand":"0"}
+disarmed={"password":"0891","Command":"disarm","Subcommand":"0"}

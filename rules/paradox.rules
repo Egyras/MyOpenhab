@@ -1,9 +1,11 @@
+var boolean ChangeInProgress = false
+
 rule "Paradox arm"
 
 when
 Item Paradox_Control changed to ARM
 then {
-paradox.sendCommand(transform("MAP", "paradox.map", "ARMN"))
+Paradox_Control.sendCommand(transform("MAP", "paradox.map", "ARMN"))
 }
 end
 
@@ -12,6 +14,56 @@ rule "Paradox disarm"
 when
 Item Paradox_Control changed to DISARM
 then {
-paradox.sendCommand(transform("MAP", "paradox.map", "DISARMN"))
+Paradox_Control.sendCommand(transform("MAP", "paradox.map", "DISARMN"))
 }
 end
+
+/*
+
+rule "Auto arm and disarm control"
+when
+    Item Paradox_Control changed
+then
+
+    if( ChangeInProgress ){
+
+        ChangeInProgress = false
+    }
+    else{
+
+        postUpdate(Auto_Mode,0)
+        
+    }
+end
+
+
+
+rule "Auto arm and disarm"
+when
+    Item Paradox_Control changed
+    or
+    Time cron "0 0/1 * * * ?"
+then
+    if( Auto_Mode.state == 1 ){
+
+            var Number hour   = now.getHourOfDay
+    		var Number minute = now.getMinuteOfHour
+
+            var boolean NeedArm = false
+            //var boolean NeedDisarm = false
+            if( hour == 23 && minute == 30 ) NeedArm = true { logInfo("Paradox.rule","Auto Arm Need") }
+            //if( hour == 08 && minute == 01 ) NeedDisarm = true
+
+            if(NeedArm){
+                Paradox_Control.sendCommand(transform("MAP","paradox.map","ARMN")) { logInfo("Paradox.rule","Auto Arm") }
+                
+                            }
+              NeedArm = false               
+            //if(NeedDisarm) {
+             //   Paradox_Control.sendCommand(transform("MAP","paradox.map","DISARMN")) { logInfo("Paradox.rule","Auto Disarm")
+    		//			 }
+            //} 
+               ChangeInProgress=true
+    }
+end
+*/

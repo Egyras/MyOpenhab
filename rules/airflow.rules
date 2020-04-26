@@ -193,7 +193,7 @@ when
     or
     Item Lueftung_Zulufttemperatur changed
     then
-       if( (Lueftung_Auto_Mode.state as DecimalType) == 1 ){
+       if( Lueftung_Auto_Mode.state == 1 ){
     
     var Number tloop =1
     var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
@@ -239,7 +239,7 @@ when
     or
     Item Lueftung_Ablufttemperatur changed
 then
-    if( (Lueftung_Auto_Mode.state as DecimalType) == 1 ){
+    if( Lueftung_Auto_Mode.state == 1 ){
     	
 
   
