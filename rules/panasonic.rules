@@ -152,6 +152,7 @@ when
      Item panasonic_w changed
         
 	then 
+     if ((panasonic_heat_pump_CompFreq.state as Number) > 10 ){
      var Outlet = Real_outlet.state as Number
      var Inlet = Real_inlet.state as Number
      var Number flow = panasonic_heat_pump_PumpFlow.state as DecimalType
@@ -162,7 +163,11 @@ when
      var Number heatProd = ((flow / 60) * 4181) * deltaT
      var Number realCop = heatProd / power
         postUpdate(Real_cop,realCop)
-     
-     
+     }
+        else{  
+            postUpdate(Real_cop,0)
+
+           }
+               
 	
 end

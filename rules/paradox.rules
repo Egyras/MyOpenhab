@@ -1,5 +1,5 @@
 var boolean ChangeInProgress = false
-
+/*
 rule "Paradox arm"
 
 when
@@ -17,12 +17,16 @@ then {
 Paradox_Control.sendCommand(transform("MAP", "paradox.map", "DISARMN"))
 }
 end
+*/
 
-/*
 
 rule "Auto arm and disarm control"
 when
-    Item Paradox_Control changed
+    System started
+   or 
+    Item Paradox_Arm0 changed
+   or
+    Item Paradox_Arm1 changed 
 then
 
     if( ChangeInProgress ){
@@ -40,7 +44,11 @@ end
 
 rule "Auto arm and disarm"
 when
-    Item Paradox_Control changed
+    System started
+    or
+    Item Paradox_Arm0 changed
+    or
+    Item Paradox_Arm1 changed 
     or
     Time cron "0 0/1 * * * ?"
 then
@@ -49,21 +57,20 @@ then
             var Number hour   = now.getHourOfDay
     		var Number minute = now.getMinuteOfHour
 
-            var boolean NeedArm = false
+            //var boolean NeedArm = false
             //var boolean NeedDisarm = false
-            if( hour == 23 && minute == 30 ) NeedArm = true { logInfo("Paradox.rule","Auto Arm Need") }
-            //if( hour == 08 && minute == 01 ) NeedDisarm = true
+            //if((hour == 21) && (minute == 37) && (Paradox_Arm0.state == "disarmed")) NeedArm = true { logInfo("Paradox.rule","Auto Arm Need") }
+            //if((hour == 06) && (minute == 40) && (Paradox_Arm0.state == "armed_away")) NeedDisarm = true { logInfo("Paradox.rule","Auto DisArm Need") }
 
-            if(NeedArm){
-                Paradox_Control.sendCommand(transform("MAP","paradox.map","ARMN")) { logInfo("Paradox.rule","Auto Arm") }
-                
-                            }
-              NeedArm = false               
-            //if(NeedDisarm) {
-             //   Paradox_Control.sendCommand(transform("MAP","paradox.map","DISARMN")) { logInfo("Paradox.rule","Auto Disarm")
-    		//			 }
-            //} 
+            if((hour == 21) && (minute == 45) && (Paradox_Arm0.state == "disarmed")){
+                Paradox_Arm0.sendCommand("armed_away") { logInfo("Paradox.rule","Auto Arm") }
+                ChangeInProgress=true
+            }
+                             
+           if((hour == 06) && (minute == 40) && (Paradox_Arm0.state == "armed_away")){
+               Paradox_Arm0.sendCommand("disarmed") { logInfo("Paradox.rule","Auto Disarm") }
                ChangeInProgress=true
+            } 
+               
     }
 end
-*/
