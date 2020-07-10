@@ -1,4 +1,4 @@
-var boolean ChangeInProgress = false
+var boolean ChangeInProgress = false 
 /*
 rule "Paradox arm"
 
@@ -25,8 +25,8 @@ when
     System started
    or 
     Item Paradox_Arm0 changed
-   or
-    Item Paradox_Arm1 changed 
+  // or
+  //  Item Paradox_Arm1 changed 
 then
 
     if( ChangeInProgress ){
@@ -47,8 +47,8 @@ when
     System started
     or
     Item Paradox_Arm0 changed
-    or
-    Item Paradox_Arm1 changed 
+    //or
+    //Item Paradox_Arm1 changed 
     or
     Time cron "0 0/1 * * * ?"
 then
@@ -57,20 +57,20 @@ then
             var Number hour   = now.getHourOfDay
     		var Number minute = now.getMinuteOfHour
 
-            //var boolean NeedArm = false
-            //var boolean NeedDisarm = false
-            //if((hour == 21) && (minute == 37) && (Paradox_Arm0.state == "disarmed")) NeedArm = true { logInfo("Paradox.rule","Auto Arm Need") }
-            //if((hour == 06) && (minute == 40) && (Paradox_Arm0.state == "armed_away")) NeedDisarm = true { logInfo("Paradox.rule","Auto DisArm Need") }
+           
 
             if((hour == 21) && (minute == 45) && (Paradox_Arm0.state == "disarmed")){
-                Paradox_Arm0.sendCommand("armed_away") { logInfo("Paradox.rule","Auto Arm") }
-                ChangeInProgress=true
+               Paradox_Arm0.sendCommand("armed_away") { logInfo("Paradox.rule","Auto Arm") }
+               ChangeInProgress=true {logInfo("Paradox.rule","Set Auto True") }
+                
             }
                              
-           if((hour == 06) && (minute == 40) && (Paradox_Arm0.state == "armed_away")){
+           if((hour == 06) && (minute == 30) && (Paradox_Arm0.state == "armed_away")){
                Paradox_Arm0.sendCommand("disarmed") { logInfo("Paradox.rule","Auto Disarm") }
-               ChangeInProgress=true
+               ChangeInProgress=true {logInfo("Paradox.rule","Set Auto True") }
+               
             } 
+               
                
     }
 end

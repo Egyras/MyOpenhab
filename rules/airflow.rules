@@ -161,7 +161,7 @@ when
 then
     if( (Lueftung_FilterfehlerI.state as DecimalType) == 1 || (Lueftung_FilterfehlerE.state as DecimalType) == 1 ){
 
-        send("test@gmail.com", "Lüftungsfilter muss gewechselt werden")
+        send("kompiuteriu@gmail.com", "Lüftungsfilter muss gewechselt werden")
         }
 end
 
