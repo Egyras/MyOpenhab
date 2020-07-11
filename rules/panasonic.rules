@@ -9,7 +9,7 @@ when
      Item panasonic_heat_pump_walve_state changed   
 	then 
       	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-            	if( (panasonic_hwater.state as DecimalType  == 1) || (panasonic_heat_pump_walve_state.state as DecimalType == 1) ) { 
+            	if( (panasonic_hwater.state as Number)  == 1 || (panasonic_heat_pump_walve_state.state as Number) == 1 ) { 
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
             }
 end
@@ -27,7 +27,7 @@ when
       var Number kwhwatercalc = panasonic_kwh_waterdiff1minute.sumSince(now.withTimeAtStartOfDay())
       var Number diffnew = kwhHeatdiff - kwhwatercalc
       
-      if( (panasonic_heat_pump_Mode.state as DecimalType)  == 4 || (panasonic_heat_pump_Mode.state as DecimalType) == 0 ) {
+     if( (panasonic_heat_pump_Mode.state as Number)  == 4 || (panasonic_heat_pump_Mode.state as Number) == 0 ) {
 	
 	//postUpdate(panasonic_cons_heat,diffdddd)
      postUpdate(panasonic_kwh_heatdiff,kwhHeatdiff)
@@ -52,7 +52,7 @@ when
       var Number kwhwatercalcc = panasonic_kwh_waterdiff1minute.sumSince(now.withTimeAtStartOfDay())
       var Number diffneww = kwhCooldiff - kwhwatercalcc
 
-      if( (panasonic_heat_pump_Mode.state as DecimalType)  == 5 || (panasonic_heat_pump_Mode.state as DecimalType) == 1 ) {
+      if( (panasonic_heat_pump_Mode.state as Number)  == 5 || (panasonic_heat_pump_Mode.state as Number) == 1 ) {
       
      postUpdate(panasonic_kwh_watercons,kwhwatercalcc)
      postUpdate(panasonic_cons_coolnew,diffneww)
