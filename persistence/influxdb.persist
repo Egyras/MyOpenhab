@@ -51,4 +51,5 @@ Items {
     Real_cop : strategy = everyChange, everyMinute
     Real_outlet : strategy = everyChange
     Real_inlet : strategy = everyChange
+    Uv_power : strategy = everyChange, everyMinute
      }

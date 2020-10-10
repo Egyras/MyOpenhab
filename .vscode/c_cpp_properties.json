@@ -5,7 +5,8 @@
             "includePath": [
                 "C:\\Users\\Vaikis\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
                 "C:\\Users\\Vaikis\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.0\\**",
-                "C:\\Users\\Vaikis\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.6.1\\**"
+                "C:\\Users\\Vaikis\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.6.1\\**",
+                "C:\\Users\\Vaikis\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.4\\**"
             ],
             "forcedInclude": [],
             "intelliSenseMode": "msvc-x64"

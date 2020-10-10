@@ -18,6 +18,7 @@ Number panasonic_cons_coolnew           "Kwh [%.2f Kwh]"        (HeatPump)      
 Number Real_inlet			                             "Temp [%.2f °C]"		               (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/1wire/28aaf7cb12130135:state:default]"}
 Number Real_outlet		                                 "Temp [%.2f °C]"		               (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/1wire/28aa62ef1213012e:state:default]"}
 Number Real_cop                                          "Cop [%.2f]"                          (HeatPump)  {panasonic="Heat Pump COP"}
+Number Uv_power                                          "W/m2 [%.2f]"                          (HeatPump) {mqtt="<[broker:tele/tasmota_D84696/SENSOR:state:JSONPATH($.VEML6070.UvPower)]"}
 //Panasonic Heat Pump//
 String panasonic_heat_pump_controller                    "State [%s]"      <settings>          (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/LWT:state:default]"}  
 Number panasonic_heat_pump_HeatShiftTemp                 "Temp [%.0f °C]"  <temperature_hot>   (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Z1_Heat_Request_Temp:state:default]"}

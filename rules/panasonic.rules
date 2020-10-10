@@ -4,40 +4,53 @@ rule "Calculate Kwh Heat water comsumption"
 when
 	System started
 	or
+     Item panasonic_kwh_heat changed
+     or
      Item panasonic_hwater changed
-        or 
-     Item panasonic_heat_pump_walve_state changed   
 	then 
       	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-            	if( (panasonic_hwater.state as Number)  == 1 || (panasonic_heat_pump_walve_state.state as Number) == 1 ) { 
+            	if( (panasonic_hwater.state as DecimalType) == 1) { 
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
             }
 end
-
-rule "Calculate Kwh Heat and water comsumption in seperate graphs"
+rule "Calculate Kwh Heat/Cool and water comsumption in seperate graphs"
 when
 	System started
 	or
      Item panasonic_kwh_heat changed
-       or
+     or
      Item panasonic_kwh_hwater changed
-     then 
-     
+     or
+     Item panasonic_heat_pump_Mode changed
+       
+	then 
       var Number kwhHeatdiff = panasonic_kwh_heat.deltaSince(now.withTimeAtStartOfDay())
       var Number kwhwatercalc = panasonic_kwh_waterdiff1minute.sumSince(now.withTimeAtStartOfDay())
       var Number diffnew = kwhHeatdiff - kwhwatercalc
-      
-     if( (panasonic_heat_pump_Mode.state as Number)  == 4 || (panasonic_heat_pump_Mode.state as Number) == 0 ) {
-	
-	//postUpdate(panasonic_cons_heat,diffdddd)
+
+    if( (panasonic_heat_pump_Mode.state as Number)  == 4 || (panasonic_heat_pump_Mode.state as Number) == 0 ) {
+     
      postUpdate(panasonic_kwh_heatdiff,kwhHeatdiff)
      postUpdate(panasonic_kwh_watercons,kwhwatercalc)
-     //postUpdate(panasonic_,kwhwatercalc)
      postUpdate(panasonic_cons_heatnew,diffnew)
-      }
+
+    }
+       var Number kwhCooldiff = panasonic_kwh_cool.deltaSince(now.withTimeAtStartOfDay())
+       var Number diffneww = kwhCooldiff - kwhwatercalc
+    if( (panasonic_heat_pump_Mode.state as Number)  == 5 || (panasonic_heat_pump_Mode.state as Number) == 1 ) {
+
+     postUpdate(panasonic_kwh_watercons,kwhwatercalc)
+     postUpdate(panasonic_cons_coolnew,diffneww)
+
+    }     
+
+    if( (panasonic_heat_pump_Mode.state as Number)  == 3 ) {
+
+     postUpdate(panasonic_kwh_watercons,kwhwatercalc)
+    }
 end
 
-rule "Calulate Kwh Cool and water comsumption in seperate graphs"
+/** rule "Calulate Kwh Cool and water comsumption in seperate graphs"
 when
 	System started
 	or
@@ -45,39 +58,20 @@ when
        or
      Item panasonic_kwh_hwater changed
        or
-     Item panasonic_heat_pump_Mode changed 
+     Item Lueftung_Ablufttemperatur changed 
    
 	then 
       var Number kwhCooldiff = panasonic_kwh_cool.deltaSince(now.withTimeAtStartOfDay())
       var Number kwhwatercalcc = panasonic_kwh_waterdiff1minute.sumSince(now.withTimeAtStartOfDay())
       var Number diffneww = kwhCooldiff - kwhwatercalcc
-
-      if( (panasonic_heat_pump_Mode.state as Number)  == 5 || (panasonic_heat_pump_Mode.state as Number) == 1 ) {
       
      postUpdate(panasonic_kwh_watercons,kwhwatercalcc)
      postUpdate(panasonic_cons_coolnew,diffneww)
-      }
 
-	//postUpdate(panasonic_kwh_cool,kwhHeat) + "Kwh"
-  //heatting season 2018.10.25
-//}
 end
+*/
 
-//rule "Calulate Kwh Heat water comsumption"
-//when
-	//System started
-	//or
-    // Item panasonic_kwh_heat changed
-    //    or
-    // Item panasonic_hwater changed
-	//then 
-  //    	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-  //          	if( (panasonic_hwater.state as DecimalType) == 1) { 
-  //    postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
-  //          }
-//end
-
-rule "Heat Control"
+/*rule "Heat Control"
 when
 	System started
 	or
@@ -99,8 +93,8 @@ when
     // }
 	
 end
-
- rule "COP Calulation"
+*/
+rule "COP Calulation"
 when
 	System started
 	or
@@ -113,22 +107,17 @@ when
      Item panasonic_w changed
         
 	then 
-     if ((panasonic_heat_pump_CompFreq.state as Number) > 10 && (Real_outlet.state as Number > Real_inlet.state as Number) ){
      var Outlet = Real_outlet.state as Number
      var Inlet = Real_inlet.state as Number
      var Number flow = panasonic_heat_pump_PumpFlow.state as DecimalType
      var power = panasonic_w.state as Number
     
     
-     var Number deltaT = Outlet - Inlet
-     var Number heatProd = ((flow / 60) * 4181) * deltaT
-     var Number realCop = heatProd / power
-        postUpdate(Real_cop,realCop)
-     }
-        else{  
-            postUpdate(Real_cop,0)
-
-           }
-               
+    var Number deltaT = Outlet - Inlet
+    var Number heatProd = ((flow / 60) * 4181) * deltaT
+    var Number realCop = heatProd / power
+          postUpdate(Real_cop,realCop)
+     
+     
 	
 end
