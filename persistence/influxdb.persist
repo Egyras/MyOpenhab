@@ -49,7 +49,7 @@ Items {
     panasonic_heat_pump_Mode : strategy = everyChange, everyMinute
     panasonic_heat_pump_defrost_state : strategy = everyChange, everyMinute
     Real_cop : strategy = everyChange, everyMinute
-    Real_outlet : strategy = everyChange
-    Real_inlet : strategy = everyChange
+    Real_outlet : strategy = everyChange, everyMinute
+    Real_inlet : strategy = everyChange, everyMinute
     Uv_power : strategy = everyChange, everyMinute
      }

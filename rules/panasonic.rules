@@ -115,12 +115,15 @@ when
      var Number flow = panasonic_heat_pump_PumpFlow.state as DecimalType
      var power = panasonic_w.state as Number
     
-    
+    if (Outlet > Inlet) {
     var Number deltaT = Outlet - Inlet
     var Number heatProd = ((flow / 60) * 4181) * deltaT
     var Number realCop = heatProd / power
           postUpdate(Real_cop,realCop)
-     
-     
+    }
+     else {
+     postUpdate(Real_cop,0) 
+     }
+
 	
 end
