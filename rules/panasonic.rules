@@ -33,6 +33,7 @@ when
      postUpdate(panasonic_kwh_heatdiff,kwhHeatdiff)
      postUpdate(panasonic_kwh_watercons,kwhwatercalc)
      postUpdate(panasonic_cons_heatnew,diffnew)
+     postUpdate(panasonic_cons_coolnew,0)
 
     }
        var Number kwhCooldiff = panasonic_kwh_cool.deltaSince(now.withTimeAtStartOfDay())
@@ -41,13 +42,15 @@ when
 
      postUpdate(panasonic_kwh_watercons,kwhwatercalc)
      postUpdate(panasonic_cons_coolnew,diffneww)
+     postUpdate(panasonic_cons_heatnew,0)
 
     }     
-
+/**
     if( (panasonic_heat_pump_Mode.state as Number)  == 3 ) {
 
      postUpdate(panasonic_kwh_watercons,kwhwatercalc)
     }
+    */
 end
 
 /** rule "Calulate Kwh Cool and water comsumption in seperate graphs"
