@@ -52,4 +52,6 @@ Items {
     Real_outlet : strategy = everyChange, everyMinute
     Real_inlet : strategy = everyChange, everyMinute
     Uv_power : strategy = everyChange, everyMinute
+    Outlet_delta : strategy = everyChange, everyMinute
+    panasonic_avg : strategy = everyChange, everyMinute
      }

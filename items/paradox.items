@@ -3,5 +3,4 @@ String Status			"Status [%s]"		(Paradox)   {mqtt="<[broker:paradoxdCTL/out:state
 String Paradox_Arm0   "Zone 0"     {mqtt=">[broker:paradoxdCTL/in:command:*:MAP(paradox0.map)],<[broker:paradoxdCTL/hassio/Arm:state:default]"}
 String Paradox_Arm1   "Zone 1"     {mqtt=">[broker:paradoxdCTL/in:command:*:MAP(paradox1.map)],<[broker:paradoxdCTL/hassio/Arm:state:default]"}
 //Number Labas              "Status"    {http="<[https://mano.labas.lt/api/login{Authorization=Basic KzM3MDYzODQyODc0OnpvbWJpczIwMDk=}:60000:REGEX(.*?<title>(.*?)</title>(.*))]"}
-Number Auto_Mode   "Mode"                 <selfAutoMode> (Paradox)
-
+Number Auto_Mode   "Arm Mode"  <selfAutoMode> (Paradox)

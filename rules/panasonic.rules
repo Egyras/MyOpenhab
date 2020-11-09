@@ -114,6 +114,7 @@ when
      var Inlet = Real_inlet.state as Number
      var Number flow = panasonic_heat_pump_PumpFlow.state as DecimalType
      var power = panasonic_w.state as Number
+         
     
     if (Outlet > Inlet) {
     var Number deltaT = Outlet - Inlet
@@ -124,6 +125,31 @@ when
      else {
      postUpdate(Real_cop,0) 
      }
-
+     
+   
 	
 end
+
+rule "Sun detection"
+
+when
+	System started
+	or
+     Item Real_outlet changed
+     or
+     Item panasonic_w changed
+     or
+     Time cron "0 0/1 * * * ?"
+
+   then
+   var Number OutletDelta = Real_outlet.deltaSince(now.minusHours(3))
+   var Number Poweravg = panasonic_w.averageSince(now.minusHours(1))
+
+if((now.plusHours(7).getHourOfDay > 12) && (OutletDelta > 0.05) && (Poweravg < 30)){
+     postUpdate(Outlet_delta,1)
+     }
+    else {
+         postUpdate(panasonic_avg,Poweravg)
+         postUpdate(Outlet_delta,OutletDelta)
+     }
+end     

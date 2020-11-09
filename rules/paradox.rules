@@ -1,42 +1,20 @@
-var boolean ChangeInProgress = false 
-/*
-rule "Paradox arm"
-
-when
-Item Paradox_Control changed to ARM
-then {
-Paradox_Control.sendCommand(transform("MAP", "paradox.map", "ARMN"))
-}
-end
-
-rule "Paradox disarm"
-
-when
-Item Paradox_Control changed to DISARM
-then {
-Paradox_Control.sendCommand(transform("MAP", "paradox.map", "DISARMN"))
-}
-end
-*/
+var boolean autoChangeInProgress = false
 
 
-rule "Auto arm and disarm control"
+rule "Manual Mode"
 when
     System started
-   or 
+    or
     Item Paradox_Arm0 changed
-  // or
-  //  Item Paradox_Arm1 changed 
 then
 
-    if( ChangeInProgress ){
+    if( autoChangeInProgress ){
 
-        ChangeInProgress = false
+        autoChangeInProgress = false
     }
     else{
 
         postUpdate(Auto_Mode,0)
-        
     }
 end
 
@@ -46,31 +24,31 @@ rule "Auto arm and disarm"
 when
     System started
     or
-    Item Paradox_Arm0 changed
-    //or
-    //Item Paradox_Arm1 changed 
+    Item Auto_Mode changed
     or
     Time cron "0 0/1 * * * ?"
 then
     if( Auto_Mode.state == 1 ){
 
-            var Number hour   = now.getHourOfDay
+            var Number hour = now.getHourOfDay 
     		var Number minute = now.getMinuteOfHour
-
+           
            
 
-            if((hour == 21) && (minute == 45) && (Paradox_Arm0.state == "disarmed")){
+            if((hour == 23) && (minute == 13) && (Paradox_Arm0.state == "disarmed")){
                Paradox_Arm0.sendCommand("armed_away") { logInfo("Paradox.rule","Auto Arm") }
-               ChangeInProgress=true {logInfo("Paradox.rule","Set Auto True") }
+               autoChangeInProgress=true {logInfo("Paradox.rule","Set Auto True") }
                 
             }
                              
-           if((hour == 06) && (minute == 30) && (Paradox_Arm0.state == "armed_away")){
+           if((hour == 06) && (minute == 05) && (Paradox_Arm0.state == "armed_away")){
                Paradox_Arm0.sendCommand("disarmed") { logInfo("Paradox.rule","Auto Disarm") }
-               ChangeInProgress=true {logInfo("Paradox.rule","Set Auto True") }
+               autoChangeInProgress=true {logInfo("Paradox.rule","Set Auto True") }
                
             } 
                
-               
+            if( autoChangeInProgress=true ) {
+                postUpdate(Auto_Mode,1)
+            }
     }
 end
