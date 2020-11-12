@@ -26,6 +26,8 @@ when
     or
     Item Auto_Mode changed
     or
+    Item Paradox_Arm0 changed
+    or
     Time cron "0 0/1 * * * ?"
 then
     if( Auto_Mode.state == 1 ){
@@ -52,3 +54,17 @@ then
             }
     }
 end
+
+rule "Paradox_Arm0 proxy"
+when
+    System started
+    or
+    Item Paradox_Arm0 changed 
+then 
+   if( Paradox_Arm0.state == "disarmed"){
+       postUpdate(Proxy_Paradox_Arm0,"Disarmed")
+   }
+   if( Paradox_Arm0.state == "armed_away"){
+       postUpdate(Proxy_Paradox_Arm0,"Armed")
+   }
+end   
