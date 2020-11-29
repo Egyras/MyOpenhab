@@ -5,6 +5,7 @@ Strategies {
 }
 
 Items {
+    Lueftung_Fan_Level : strategy = everyChange, restoreOnStartup
     Lueftung_Aussenlufttemperatur : strategy = everyChange, everyMinute
     Lueftung_Fortlufttemperatur : strategy = everyChange, everyMinute
     Lueftung_Zulufttemperatur : strategy = everyChange, everyMinute
@@ -54,4 +55,5 @@ Items {
     Uv_power : strategy = everyChange, everyMinute
     Outlet_delta : strategy = everyChange, everyMinute
     panasonic_avg : strategy = everyChange, everyMinute
+    Auto_Mode : strategy = everyChange, restoreOnStartup
      }

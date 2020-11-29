@@ -22,10 +22,10 @@ when
     Item Lueftung_Ablufttemperatur changed
 	then 
 	  
-	  	var Number TistrisNamo = Lueftung_Ablufttemperatur.state as DecimalType
-	  	var Number TIsmetamoilauka = Lueftung_Fortlufttemperatur.state as DecimalType
-		var Number Tlauko = Lueftung_Aussenlufttemperatur.state as DecimalType
-		var Number effi = ( (TistrisNamo - TIsmetamoilauka) / (TistrisNamo - Tlauko) ) * 100
+	  	var Number Tpaduodama = Lueftung_Zulufttemperatur.state as DecimalType
+	  	var Number Tlauko = Lueftung_Fortlufttemperatur.state as DecimalType
+		var Number Tvidaus = Lueftung_Ablufttemperatur.state as DecimalType
+		var Number effi = ( (Tpaduodama - Tlauko) / (Tvidaus - Tlauko) ) * 100
 	 	
 	postUpdate(Lueftung_eff,effi) + "%"
 	
