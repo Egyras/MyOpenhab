@@ -1,7 +1,7 @@
 
 Switch panasonic_h "Heat Status" (HeatPump) {mqtt=">[broker:/Panasonic/gpio/16:command:ON:1],>[broker:/Panasonic/gpio/16:command:OFF:0],<[broker:/Panasonic/relay/Switch:state:MAP(panasonic.map)]"}
 Number panasonic_kwh_cool                     "Kwh [%.1f Kwh]"  		(HeatPump)   {mqtt="<[broker:panasonic/tot_act_en:state:default]"}
-Number panasonic_w                   "power [%.1f W]"  		(HeatPump)   {mqtt="<[broker:panasonic/pow:state:default]"}
+Number panasonic_w                   "power [%.1f W]"  		(Group_HabPanel_Dashboard)   {mqtt="<[broker:panasonic/pow:state:default]"}
 Number panasonic_kwh_heat                     "Kwh [%.1f Kwh]"  		(HeatPump)   {mqtt="<[broker:panasonic/tot_act_en:state:default]"}
 Number panasonic_kwh_cooling             "Kwh [%.1f Kwh]"        (HeatPump)                {panasonic="cool consumption"}
 Switch panasonic_c                     "Cool Status" (HeatPump) {mqtt=">[broker:/Panasonic/gpio/16:command:ON:1],>[broker:/Panasonic/gpio/16:command:OFF:0],<[broker:/Panasonic/relay/Switch:state:MAP(panasonic_cool.map)]"}
@@ -45,7 +45,7 @@ Number panasonic_heat_pump_defrost_state                 "Defrost"              
 Number panasonic_heat_pump_CompFreq                      "Frequency [%.0f Hz]" 	  <flow>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Compressor_Freq:state:default]"}
 Number panasonic_heat_pump_OperatingTime                 "Time [%.0f h]"  		  <time>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Operations_Hours:state:default]"}
 Number panasonic_heat_pump_OperationsNumber              "Operations [%.0f]"  	 <chart>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Operations_Counter:state:default]"}
-String panasonic_heat_pump_Error                         "Error_string  [%s]"	 <error>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Error:state:default]"}
+String panasonic_heat_pump_Error                         "Error_string  [%s]"	 <error>       (Group_HabPanel_Dashboard)  {mqtt="<[broker:panasonic_heat_pump/sdc/Error:state:default]"}
 Number panasonic_heat_pump_HeatPumpStatus                "Mode"		            <switch>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Heatpump_State:state:default]"}
 Number panasonic_heat_pump_Quiet_mode                    "Mode"            <soundvolume>       (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetQuietMode:command:*:${command}],
                                                                                                                   <[broker:panasonic_heat_pump/sdc/Quiet_Mode_Level:state:default]"}
