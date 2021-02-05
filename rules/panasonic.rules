@@ -9,7 +9,7 @@ when
      Item panasonic_hwater changed
 	then 
       	    var Number kwhwater = panasonic_kwh_heat.state as DecimalType
-            	if( (panasonic_hwater.state as DecimalType) == 1) { 
+            	if( (panasonic_hwater.state as Number)  == 1 || (panasonic_heat_pump_walve_state.state as Number) == 1 ) {
       postUpdate(panasonic_kwh_hwater,kwhwater) + "Kwh"
             }
 end
