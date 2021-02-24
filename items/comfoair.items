@@ -33,3 +33,6 @@ Switch Zhender_baypass "Baypass Status" (Lueftung) {mqtt=">[broker:/ZhenderBaypa
 Number Lauko_TP			"OutsideTemp [%.1f °C]"		(Lueftung)   {mqtt="<[broker:/ZhenderBaypass/LaukoTP/LaukoTP:state:default]"}
 Number Out_air_temp			"temp [%.1f °C]"	<temperature>	(Group_HabPanel_Dashboard)   {mqtt="<[broker:AirOutside/Air/Temperature:state:default]"}
 Number Out_air_hum			"hum [%.1f %%]"	<smoke>	(Group_HabPanel_Dashboard)   {mqtt="<[broker:AirOutside/Air/Humidity:state:default]"}
+Number In_air_temp			"temp [%.1f °C]"	<temperature>	(Group_HabPanel_Dashboard)   {mqtt="<[broker:inside/Temperature:state:default]"}
+Number In_air_hum			"hum [%.1f %%]"	<smoke>	(Group_HabPanel_Dashboard)   {mqtt="<[broker:inside/Humidity:state:default]"}
+Number Voltage			"vol [%.2f V]"	<smoke>	(Group_HabPanel_Dashboard)   {mqtt="<[broker:inside/Voltage:state:default]"}

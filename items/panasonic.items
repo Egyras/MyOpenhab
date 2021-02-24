@@ -21,6 +21,8 @@ Number Real_cop                                          "Cop [%.2f]"           
 Number Uv_power                                          "W/m2 [%.2f]"                          (HeatPump) {mqtt="<[broker:tele/tasmota_D84696/SENSOR:state:JSONPATH($.VEML6070.UvPower)]"}
 Number Outlet_delta                                          "Delta [%.2f C]"                          (HeatPump)  {panasonic="Outlet Delta"}
 Number panasonic_avg                   "power [%.1f W]"  		                                (HeatPump) {panasonic="Power avg"}
+Number HeatDemand                       "Status [%d]"               (HeatPump)                {panasonic="Heat demand"}
+Switch HeatDemandMode                   "AutoHeat"                  (HeatPump)                {panasonic="Heat demand automation"}
 //Panasonic Heat Pump//
 String panasonic_heat_pump_controller                    "State [%s]"      <settings>          (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/LWT:state:default]"}  
 Number panasonic_heat_pump_HeatShiftTemp                 "Temp [%.0f °C]"  <temperature_hot>   (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Z1_Heat_Request_Temp:state:default]"}
@@ -45,6 +47,7 @@ Number panasonic_heat_pump_defrost_state                 "Defrost"              
 Number panasonic_heat_pump_CompFreq                      "Frequency [%.0f Hz]" 	  <flow>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Compressor_Freq:state:default]"}
 Number panasonic_heat_pump_OperatingTime                 "Time [%.0f h]"  		  <time>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Operations_Hours:state:default]"}
 Number panasonic_heat_pump_OperationsNumber              "Operations [%.0f]"  	 <chart>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Operations_Counter:state:default]"}
+Number panasonic_heat_pump_Room_Holiday_Shift_Temp            "Temp [%.0f °C]"  	 <chart>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Room_Holiday_Shift_Temp:state:default]"}
 String panasonic_heat_pump_Error                         "Error_string  [%s]"	 <error>       (Group_HabPanel_Dashboard)  {mqtt="<[broker:panasonic_heat_pump/sdc/Error:state:default]"}
 Number panasonic_heat_pump_HeatPumpStatus                "Mode"		            <switch>       (HeatPump)  {mqtt="<[broker:panasonic_heat_pump/sdc/Heatpump_State:state:default]"}
 Number panasonic_heat_pump_Quiet_mode                    "Mode"            <soundvolume>       (HeatPump)  {mqtt=">[broker:panasonic_heat_pump/SetQuietMode:command:*:${command}],

@@ -97,6 +97,7 @@ when
 	
 end
 */
+
 rule "COP Calulation"
 when
 	System started
@@ -153,3 +154,43 @@ if((now.plusHours(7).getHourOfDay > 12) && (OutletDelta > 0.05) && (Poweravg < 3
          postUpdate(Outlet_delta,OutletDelta)
      }
 end     
+
+rule "Heating demand"
+when
+     System started
+	or
+     Item In_air_temp changed
+     then
+     var Number TempNow = In_air_temp.state as Number
+     var Number TempBefore = In_air_temp.deltaSince(now.minusMinutes(40))
+     //var Number TempD = TempBefore
+
+     if(TempNow >= 23.2 || TempBefore >= 0.45) {
+        postUpdate(HeatDemand,0)  
+     }
+     else {
+          postUpdate(HeatDemand,1) 
+     }
+end
+
+
+
+ rule "Auto Heating Stop/Start"
+when
+	System started
+	or
+     Item HeatDemand changed 
+     or
+     Item panasonic_heat_pump_Holiday changed
+     or
+     Item HeatDemandMode changed
+
+    then
+
+    if(HeatDemandMode == ON && HeatDemand == 1) {
+      sendCommand(panasonic_heat_pump_Holiday,0) { logInfo("panasonic.rules", "Auto Heating ON") }
+    }
+     else if(HeatDemandMode == ON && HeatDemand == 0) {
+      sendCommand(panasonic_heat_pump_Holiday,1) { logInfo("panasonic.rules", "Auto Heating OFF") }
+        }
+end
