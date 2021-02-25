@@ -186,11 +186,23 @@ when
      Item HeatDemandMode changed
 
     then
-
-    if(HeatDemandMode == ON && HeatDemand == 1) {
+       val currentHoliday = panasonic_heat_pump_Holiday.state as Number
+       //var newstate = currentHoliday
+    
+    if((HeatDemandMode.state == ON) && (HeatDemand.state as DecimalType == 1) && (currentHoliday == 2))  {
+        
       sendCommand(panasonic_heat_pump_Holiday,0) { logInfo("panasonic.rules", "Auto Heating ON") }
+      
+    
     }
-     else if(HeatDemandMode == ON && HeatDemand == 0) {
+     else if((HeatDemandMode.state == ON) && (HeatDemand.state as DecimalType == 0) && (currentHoliday == 0)) {
+          
       sendCommand(panasonic_heat_pump_Holiday,1) { logInfo("panasonic.rules", "Auto Heating OFF") }
+     }
+
+      if((HeatDemandMode.state == OFF) && (currentHoliday == 2)) {
+      sendCommand(panasonic_heat_pump_Holiday,0) { logInfo("panasonic.rules", "Disable Auto Heating") }
         }
+    
+
 end
