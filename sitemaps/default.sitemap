@@ -138,4 +138,22 @@ Text item=Weather_CurTemp label="Current Forecast Temperature" icon="climate" {
 
      }
 
+     Text label="Irrigation" icon="water" {
+
+     Frame {
+
+              
+            Switch item=Zone1 label="Zone 1 North"
+            Switch item=Zone2 label="Zone 2 East"
+            Switch item=Zone3 label="Zone 3 South"
+            Switch item=Zone4 label="Zone 4 South"   
+           
+
+
+
+
+          }
+
+     }
+
 }

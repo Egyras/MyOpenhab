@@ -160,15 +160,17 @@ when
      System started
 	or
      Item In_air_temp changed
+     or
+     Time cron "0 0/1 * * * ?"
      then
      var Number TempNow = In_air_temp.state as Number
      var Number TempBefore = In_air_temp.deltaSince(now.minusMinutes(40))
      //var Number TempD = TempBefore
 
-     if(TempNow >= 23.2 || TempBefore >= 0.45) {
+     if(TempBefore >= 0.45) {
         postUpdate(HeatDemand,0)  
      }
-     else {
+     else if (TempNow < 22.7){
           postUpdate(HeatDemand,1) 
      }
 end

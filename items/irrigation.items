@@ -1,0 +1,4 @@
+Switch Zone1 "North Side" (Irrigation) {mqtt=">[broker:Irrigation/gpio/2:command:ON:0],>[broker:Irrigation/gpio/2:command:OFF:1]", expire="5m,command=OFF"}
+Switch Zone2 "East Side" (Irrigation) {mqtt=">[broker:Irrigation/gpio/0:command:ON:0],>[broker:Irrigation/gpio/0:command:OFF:1]", expire="5m,command=OFF"}
+Switch Zone3 "South Side1" (Irrigation) {mqtt=">[broker:Irrigation/gpio/12:command:ON:0],>[broker:Irrigation/gpio/12:command:OFF:1]", expire="5m,command=OFF"}
+Switch Zone4 "South Side2" (Irrigation) {mqtt=">[broker:Irrigation/gpio/14:command:ON:0],>[broker:Irrigation/gpio/14:command:OFF:1]", expire="5m,command=OFF"}
